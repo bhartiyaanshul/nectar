@@ -1,4 +1,4 @@
 class Item {
-  Item({ required this.name});
+  Item({required this.name});
   String name;
 }

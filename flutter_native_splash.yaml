@@ -1,0 +1,7 @@
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#53B175"
+  image: assets/icons/Companyname-logo.png
+
+  android_12:
+    image: assets/icons/Companyname-logo.png

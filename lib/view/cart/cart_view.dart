@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:nectar/core/model/item.dart';
 import 'package:nectar/core/viewmodel/cart_view_model.dart';
+import 'package:nectar/view/cart/cart_body.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -10,52 +10,42 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final model = context.watch<CartViewModel>();
-    return ChangeNotifierProvider(
-      create:(_) => CartViewModel(),
-      child: Builder(
-        builder: (context) {
-          final model = context.watch<CartViewModel>();
-          return Scaffold(
-              appBar: AppBar(
-                title: const Text('Cart'),
+    final model = context.watch<CartViewModel>();
+    return Scaffold(
+          appBar: AppBar(
+            title: const Text('Cart'),
+          ),
+          body: const CartBody(),
+          bottomNavigationBar: BottomNavigationBar(
+            items: [
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                label: 'View Cart',
               ),
-              body: Center(
-                child: Column(
+              BottomNavigationBarItem(
+                icon: Stack(
                   children: [
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: model.items.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(model.items[index].name),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () {
-                              model.remove(model.items[index]);
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        model.removeAll();
-                      }, 
-                      child: const Text('Remove All')
-                    ),
+                    const Icon(Icons.shopping_cart),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Container(
+                        height: 15,
+                        width: 15,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadiusDirectional.all(Radius.circular(50)),
+                          color: Colors.black
+                        ),
+                        child: Text('${model.items.length}',style: const TextStyle(color: Colors.white,fontSize: 10),),
+                      ),
+                    )
                   ],
                 ),
+                label: 'Cart'
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: (){
-                  model.add(Item(name: 'Item ${model.items.length+1}'));
-                },
-                child: const Icon(Icons.add),
-              ));
-        }
-      ),
-    );
+            ],
+          ),
+        );
   }
 }
