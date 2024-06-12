@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:nectar/view/login/login_view_model.dart';
+import 'package:nectar/core/viewmodel/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -42,10 +42,9 @@ class PhoneView extends StatelessWidget {
                   keyboardType: TextInputType.phone,
                   cursorColor: const Color(0xff7C7C7C),
                   style: const TextStyle(
-                    fontFamily: 'Gilroy-normal',
-                    fontSize: 18,
-                    color: Color(0xff030303),
-                  ),
+                      fontFamily: 'Gilroy',
+                      fontSize: 18,
+                      color: Color(0xff030303)),
                   controller: model.phoneController,
                   decoration: InputDecoration(
                       enabledBorder: const UnderlineInputBorder(
@@ -54,36 +53,36 @@ class PhoneView extends StatelessWidget {
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xffE2E2E2)),
                       ),
-                      prefixIcon: GestureDetector(
-                    onTap: () {
-                      showCountryPicker(
-                        context: context,
-                        showPhoneCode: false,
-                        onSelect: (Country country) {
-                          model.setCountry(country);
+                      prefix: GestureDetector(
+                        onTap: () {
+                          showCountryPicker(
+                            context: context,
+                            showPhoneCode: false,
+                            onSelect: (Country country) {
+                              model.setCountry(country);
+                            },
+                          );
                         },
-                      );
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          model.country?.flagEmoji ?? '🇮🇳',
-                          style: const TextStyle(fontSize: 22),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              model.country?.flagEmoji ?? '🇮🇳',
+                              style: const TextStyle(fontSize: 22),
+                            ),
+                            const SizedBox(width: 12),
+                            Text(
+                              '+${model.country?.phoneCode ?? '91'}',
+                              style: const TextStyle(
+                                  fontFamily: 'Gilroy',
+                                  fontSize: 18,
+                                  color: Color(0xff030303)),
+                            ),
+                            const SizedBox(width: 5),
+                          ],
                         ),
-                        const SizedBox(width: 12),
-                        Text(
-                          '+${model.country?.phoneCode ?? '91'}',
-                          style: const TextStyle(
-                              fontFamily: 'Gilroy-normal',
-                              fontSize: 18,
-                              color: Color(0xff030303)),
-                        ),
-                        const SizedBox(width: 5),
-                      ],
-                    ),
-                  )),
+                      )),
                 ))
           ],
         ),
@@ -91,6 +90,7 @@ class PhoneView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_fromKey.currentState?.validate() ?? false) {
+            model.navigateToOtpVerification();
             print('Validated');
           }
         },

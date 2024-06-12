@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:nectar/core/app_locator.dart';
 import 'package:nectar/core/app_router.dart';
 import 'package:nectar/core/app_router.gr.dart';
+import 'package:nectar/view/login/otp_verification_view.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final TextEditingController phoneController = TextEditingController();
@@ -20,7 +21,12 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void navigateToPhone() {
-    _appRouter.push(const PhoneRoute());
+    _appRouter.push(PhoneRoute());
+    print('Navigating to phone view...');
+  }
+
+  void navigateToOtpVerification() {
+    _appRouter.push(OtpVerificationRoute());
     print('Navigating to phone view...');
   }
 

@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nectar/view/login/login_view_model.dart';
+import 'package:nectar/core/viewmodel/login_view_model.dart';
 import 'package:nectar/widget/button/primary_button.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +33,6 @@ class LoginView extends StatelessWidget {
                 onTap: (){
                   model.navigateToPhone();
                 },
-                keyboardType: TextInputType.phone,
                 cursorColor: const Color(0xff7C7C7C),
                 decoration: const InputDecoration(
                     enabledBorder: UnderlineInputBorder(
@@ -62,7 +60,6 @@ class LoginView extends StatelessWidget {
                         ],
                       ),
                     ),
-                controller: model.phoneController,
               ),
               const SizedBox(height: 40),
               Center(

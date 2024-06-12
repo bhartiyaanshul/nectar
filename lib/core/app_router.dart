@@ -8,6 +8,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: OnBoardingRoute.page, initial: true),
         AutoRoute(page: PhoneRoute.page),
         AutoRoute(page: CartRoute.page),
-        AutoRoute(page: LoginRoute.page)
+        AutoRoute(page: LoginRoute.page),
+        AutoRoute(page: OtpVerificationRoute.page),
       ];
 }
