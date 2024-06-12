@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/core/viewmodel/cart_view_model.dart';
+import 'package:nectar/view/login/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 class AppProvider extends StatelessWidget {
@@ -11,6 +12,7 @@ class AppProvider extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartViewModel()),
+        ChangeNotifierProvider(create:  (_) => LoginViewModel()),
       ],
       child: child,
     );

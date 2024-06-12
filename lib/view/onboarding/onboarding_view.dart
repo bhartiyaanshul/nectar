@@ -54,7 +54,7 @@ class OnBoardingView extends StatelessWidget {
                         height: 40,
                       ),
                       PrimaryButton.primary(
-                        title: 'Add to basket',
+                        title: 'Get Started',
                         onTap: () {
                           context.pushRoute(const LoginRoute());
                         },

@@ -8,7 +8,7 @@ enum ButtonType {
 class PrimaryButton extends StatelessWidget {
   final ButtonType _type;
   final String title;
-  String? color;
+  Color? color;
   Widget? icon;
   Function onTap;
   PrimaryButton.primary({super.key,required this.title, required this.onTap}) : _type = ButtonType.primary;
@@ -17,10 +17,11 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      // onTap: () => onTap(),
       child: TextButton(
         onPressed: () => onTap(),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Color(int.parse(color ?? '0xff53B175'))),
+          backgroundColor: MaterialStateProperty.all(color ?? Theme.of(context).primaryColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(19),
@@ -36,7 +37,7 @@ class PrimaryButton extends StatelessWidget {
               children: [
                 icon!,
                 Text(title,  style: const TextStyle(fontFamily: 'Gilroy', fontSize: 18, color: Color(0xffFFF9FF)),textAlign: TextAlign.center,),
-                const SizedBox()
+                Opacity(opacity: 0,child: icon!)
               ],
             ) : SizedBox(width: 300,child: Text(title,  style: const TextStyle(fontFamily: 'Gilroy', fontSize: 18, color: Color(0xffFFF9FF)),textAlign: TextAlign.center,)),
 
