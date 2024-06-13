@@ -5,10 +5,11 @@ import 'package:nectar/core/app_router.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: OnBoardingRoute.page, initial: true),
+        AutoRoute(page: OnBoardingRoute.page,initial: true ),
         AutoRoute(page: PhoneRoute.page),
         AutoRoute(page: CartRoute.page),
         AutoRoute(page: LoginRoute.page),
         AutoRoute(page: OtpVerificationRoute.page),
+        AutoRoute(page: LocationRoute.page),
       ];
 }

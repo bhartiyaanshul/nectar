@@ -16,7 +16,9 @@ class OtpVerificationView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          onPressed: () {},
+          onPressed: () {
+            context.router.maybePop();
+          },
         ),
       ),
       body: Padding(
@@ -36,7 +38,8 @@ class OtpVerificationView extends StatelessWidget {
             Form(
                 key: _fromKey,
                 child: TextFormField(
-                  maxLength: 4,
+                  onChanged: model.setOTP,
+                  maxLength: 6,
                   textAlignVertical: TextAlignVertical.center,
                   keyboardType: TextInputType.phone,
                   cursorColor: const Color(0xff7C7C7C),
@@ -85,8 +88,10 @@ class OtpVerificationView extends StatelessWidget {
                         fontWeight: FontWeight.w500))),
             FloatingActionButton(
               elevation: 0,
-              onPressed: () {
+              onPressed: () async {
                 if (_fromKey.currentState?.validate() ?? false) {
+                  await model.verifyOtp();
+                  model.navigateToLocation();
                   print('Validated');
                 }
               },

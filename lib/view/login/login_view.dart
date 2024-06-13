@@ -30,36 +30,42 @@ class LoginView extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: 20),
               TextField(
-                onTap: (){
+                autofocus: false,
+                readOnly: true,
+                style: const TextStyle(
+                    fontFamily: 'Gilroy',
+                    fontSize: 18,
+                    color: Color(0xff030303)),
+                onTap: () {
                   model.navigateToPhone();
                 },
                 cursorColor: const Color(0xff7C7C7C),
                 decoration: const InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                    ),
-                    prefixIcon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            '🇮🇳',
-                            style: TextStyle(fontSize: 22),
-                          ),
-                          SizedBox(width: 12),
-                          Text(
-                            '+91',
-                            style: TextStyle(
-                                fontFamily: 'Gilroy-normal',
-                                fontSize: 18,
-                                color: Color(0xff030303)),
-                          ),
-                          SizedBox(width: 5),
-                        ],
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                  ),
+                  prefixIcon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '🇮🇳',
+                        style: TextStyle(fontSize: 22),
                       ),
-                    ),
+                      SizedBox(width: 12),
+                      Text(
+                        '+91',
+                        style: TextStyle(
+                            fontFamily: 'Gilroy',
+                            fontSize: 18,
+                            color: Color(0xff030303)),
+                      ),
+                      SizedBox(width: 5),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(height: 40),
               Center(

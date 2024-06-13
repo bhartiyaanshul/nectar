@@ -17,7 +17,9 @@ class PhoneView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          onPressed: () {},
+          onPressed: () {
+            context.router.maybePop();
+          },
         ),
       ),
       body: Padding(
@@ -37,6 +39,8 @@ class PhoneView extends StatelessWidget {
             Form(
                 key: _fromKey,
                 child: TextFormField(
+                  onChanged: model.setPhoneNumber,
+                  autofocus: true,
                   validator: model.validateContactNumber,
                   textAlignVertical: TextAlignVertical.center,
                   keyboardType: TextInputType.phone,
@@ -45,7 +49,6 @@ class PhoneView extends StatelessWidget {
                       fontFamily: 'Gilroy',
                       fontSize: 18,
                       color: Color(0xff030303)),
-                  controller: model.phoneController,
                   decoration: InputDecoration(
                       enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xffE2E2E2)),
@@ -88,8 +91,10 @@ class PhoneView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        elevation: 0,
+        onPressed: () async {
           if (_fromKey.currentState?.validate() ?? false) {
+            await model.signinWuthOtp();
             model.navigateToOtpVerification();
             print('Validated');
           }

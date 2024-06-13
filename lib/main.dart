@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nectar/core/app_locator.dart';
 import 'package:nectar/core/app_provider.dart';
 import 'package:nectar/core/app_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  await Supabase.initialize(
+    url: 'https://dxbfneyqkwbswxshogoy.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4YmZuZXlxa3dic3d4c2hvZ295Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTgyNTY5OTUsImV4cCI6MjAzMzgzMjk5NX0.CkJPBVnPS7YZJzEA6vwVa2_tD57FQ07GCrYw0UTIqdg',
+  );
   setupLocator();
   runApp(MainApp());
 }
@@ -33,7 +37,7 @@ class MainApp extends StatelessWidget {
             labelMedium: TextStyle(
               fontSize: 16,
               fontFamily: 'Gilroy',
-              fontWeight: FontWeight.w500,
+              // fontWeight: FontWeight.normal,
               color: Color(0xff7C7C7C)
             ),
             labelSmall: TextStyle(
