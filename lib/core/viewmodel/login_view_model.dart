@@ -19,8 +19,8 @@ class LoginViewModel extends ChangeNotifier {
     'Zone 5': ['Area 1','Area 2','Area 3','Area 4','Area 5']
   };
   // List<String> areas = ['Area 1','Area 2','Area 3','Area 4','Area 5'];
-  String _zone = 'Zone 1';
-  String _area = 'Area 1';
+  String _zone = '';
+  String _area = '';
 
   String get zone => _zone;
   String get area => _area;
@@ -95,5 +95,41 @@ class LoginViewModel extends ChangeNotifier {
     _area = area;
     areaController.text = area;
     notifyListeners();
+  }
+
+//  void validateLoaction() {
+//     if(_zone.isEmpty || _area.isEmpty){
+//       print('Please select a zone and area');
+//     } else {
+//       print('Zone: $_zone, Area: $_area');
+//     }
+//   }
+
+  String? validateZone(String? value) {
+    if(value!.isEmpty || value == null){
+      return 'Please select a zone';
+    }
+    else if(_zone.isEmpty || _zone == null){
+      return 'Please select a zone first';
+    }
+    else if(!zones.any((element) => element.toLowerCase() == value.toLowerCase())){
+      return '$value is not a valid zone';
+    }
+    return null;
+  }
+
+  String? validateArea(String? value) {
+    if(value!.isEmpty || value == null){
+      return 'Please select an area';
+    }
+    else if(_area.isEmpty || _area == null){
+      return 'Please select a area first';
+    }
+    else if(!List<String>.from(areas[_zone]).any((element) => element.toLowerCase() == value.toLowerCase())){
+      return '$value is not a valid area';
+    }
+    else {
+      print('Zone: $_zone');
+    }
   }
 }

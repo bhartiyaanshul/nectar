@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/core/viewmodel/login_view_model.dart';
+import 'package:nectar/widget/textfield/primary_textfield.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -38,54 +39,41 @@ class PhoneView extends StatelessWidget {
             const SizedBox(height: 10),
             Form(
                 key: _fromKey,
-                child: TextFormField(
+                child: PrimaryTextField(
                   onChanged: model.setPhoneNumber,
                   autofocus: true,
                   validator: model.validateContactNumber,
-                  textAlignVertical: TextAlignVertical.center,
                   keyboardType: TextInputType.phone,
-                  cursorColor: const Color(0xff7C7C7C),
-                  style: const TextStyle(
-                      fontFamily: 'Gilroy',
-                      fontSize: 18,
-                      color: Color(0xff030303)),
-                  decoration: InputDecoration(
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                      ),
-                      prefix: GestureDetector(
-                        onTap: () {
-                          showCountryPicker(
-                            context: context,
-                            showPhoneCode: false,
-                            onSelect: (Country country) {
-                              model.setCountry(country);
-                            },
-                          );
+                  prefix: GestureDetector(
+                    onTap: () {
+                      showCountryPicker(
+                        context: context,
+                        showPhoneCode: false,
+                        onSelect: (Country country) {
+                          model.setCountry(country);
                         },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              model.country?.flagEmoji ?? '🇮🇳',
-                              style: const TextStyle(fontSize: 22),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              '+${model.country?.phoneCode ?? '--'}',
-                              style: const TextStyle(
-                                  fontFamily: 'Gilroy',
-                                  fontSize: 18,
-                                  color: Color(0xff030303)),
-                            ),
-                            const SizedBox(width: 5),
-                          ],
+                      );
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          model.country?.flagEmoji ?? '🇮🇳',
+                          style: const TextStyle(fontSize: 22),
                         ),
-                      )),
+                        const SizedBox(width: 12),
+                        Text(
+                          '+${model.country?.phoneCode ?? '  '}',
+                          style: const TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontSize: 18,
+                              color: Color(0xff030303)),
+                        ),
+                        const SizedBox(width: 5),
+                      ],
+                    ),
+                  ),
                 ))
           ],
         ),

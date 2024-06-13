@@ -31,7 +31,7 @@ abstract class $AppRouter extends _i7.RootStackRouter {
     LocationRoute.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.LocationView(),
+        child: _i2.LocationView(),
       );
     },
     LoginRoute.name: (routeData) {

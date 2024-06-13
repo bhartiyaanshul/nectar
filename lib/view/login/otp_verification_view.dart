@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/core/viewmodel/login_view_model.dart';
+import 'package:nectar/widget/textfield/primary_textfield.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -37,26 +38,11 @@ class OtpVerificationView extends StatelessWidget {
             const SizedBox(height: 10),
             Form(
                 key: _fromKey,
-                child: TextFormField(
+                child: PrimaryTextField(
                   onChanged: model.setOTP,
-                  maxLength: 6,
-                  textAlignVertical: TextAlignVertical.center,
+                  maxLength: 4,
                   keyboardType: TextInputType.phone,
-                  cursorColor: const Color(0xff7C7C7C),
-                  style: const TextStyle(
-                    fontFamily: 'Gilroy-normal',
-                    fontSize: 18,
-                    color: Color(0xff030303),
-                  ),
-                  decoration: const InputDecoration(
-                    hintText: '- - - - - -',
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                    ),
-                  ),
+                  hintText: '- - - -',
                 ))
           ],
         ),
