@@ -9,6 +9,8 @@ class PrimaryTextField extends StatelessWidget {
   final bool autofocus;
   final int? maxLength;
   final String? hintText;
+  final FocusNode? focusNode;
+  final TextEditingController? controller;
   const PrimaryTextField(
       {super.key,
       this.onChanged,
@@ -16,12 +18,14 @@ class PrimaryTextField extends StatelessWidget {
       this.keyboardType,
       this.prefix,
       this.suffix,
-      this.autofocus = false, this.maxLength, this.hintText
+      this.autofocus = false, this.maxLength, this.hintText, this.controller, this.focusNode
       });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
+      controller: controller,
       onChanged: onChanged,
       maxLength: maxLength,
       autofocus: autofocus,

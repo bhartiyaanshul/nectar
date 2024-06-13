@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:nectar/core/viewmodel/login_view_model.dart';
 import 'package:nectar/widget/button/primary_button.dart';
+import 'package:nectar/widget/typeaheadfield/type_ahead_field.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -49,78 +50,114 @@ class LocationView extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 70),
-                const Text(
-                  'Your Zone',
-                  textAlign: TextAlign.left,
-                ),
-                TypeAheadField<String>(
-                  itemBuilder:(context, value) {
+                // TypeAheadField<String>(
+                //   itemBuilder:(context, value) {
+                //     return ListTile(
+                //       tileColor: Colors.white, 
+                //       title: Text(value),
+                //     );
+                //   },
+                //   controller: model.zoneController,
+                //   builder: (context, controller, focusNode) {
+                //     return TextFormField(
+                //       controller: controller,
+                //       focusNode: focusNode,
+                //       validator: model.validateZone,
+                //       decoration: InputDecoration(
+                //         suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
+                //         enabledBorder: const UnderlineInputBorder(
+                //           borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                //         ),
+                //         focusedBorder: const UnderlineInputBorder(
+                //           borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                //   onSelected:(value) {
+                //     model.setZone(value);
+                //   }, 
+                //   suggestionsCallback:(search) {
+                //     return model.zones.where((element) => element.toLowerCase().contains(search.toLowerCase())).toList();
+                //   },
+                // ),
+                
+                CustomTypeAheadField<String>(
+                  controller: model.zoneController,
+                  validator: model.validateZone,
+                  itemBuilder: (context, value) {
                     return ListTile(
                       tileColor: Colors.white, 
                       title: Text(value),
                     );
                   },
-                  controller: model.zoneController,
-                  builder: (context, controller, focusNode) {
-                    return TextFormField(
-                      controller: controller,
-                      focusNode: focusNode,
-                      validator: model.validateZone,
-                      decoration: InputDecoration(
-                        suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                        ),
-                      ),
-                    );
-                  },
-                  onSelected:(value) {
+                  onSelected: (value) {
                     model.setZone(value);
                   }, 
-                  suggestionsCallback:(search) {
+                  suggestionsCallback: (search) {
+                    // print(model.areas[model.zone]);
                     return model.zones.where((element) => element.toLowerCase().contains(search.toLowerCase())).toList();
-                  },
+                  },  
+                  title: 'Your Zone',
+                  suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
                 ),
                 const SizedBox(height: 30,),
-                const Text(
-                  'Your Area',
-                  textAlign: TextAlign.left,
-                ),
-                TypeAheadField<String>(
-                  itemBuilder:(context, value) {
+                CustomTypeAheadField<String>(
+                  controller: model.areaController,
+                  validator: model.validateArea,
+                  itemBuilder: (context, value) {
                     return ListTile(
                       tileColor: Colors.white, 
                       title: Text(value),
                     );
                   },
-                  controller: model.areaController,
-                  builder: (context, controller, focusNode) {
-                    return TextFormField(
-                      controller: controller,
-                      focusNode: focusNode,
-                      validator: model.validateArea,
-                      decoration: InputDecoration(
-                        suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                        ),
-                      ),
-                    );
-                  },
-                  onSelected:(value) {
+                  onSelected: (value) {
                     model.setArea(value);
                   }, 
-                  suggestionsCallback:(search) {
-                    print(model.areas[model.zone]);
+                  suggestionsCallback: (search) {
+                    // print(model.areas[model.zone]);
                     return List<String>.from(model.areas[model.zone]).where((element) => element.toLowerCase().contains(search.toLowerCase())).toList();
-                  },
+                  },  
+                  title: 'Your Area',
+                  suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
                 ),
+                
+                // const Text(
+                //   'Your Area',
+                //   textAlign: TextAlign.left,
+                // ),
+                // TypeAheadField<String>(
+                //   itemBuilder:(context, value) {
+                //     return ListTile(
+                //       tileColor: Colors.white, 
+                //       title: Text(value),
+                //     );
+                //   },
+                //   controller: model.areaController,
+                //   builder: (context, controller, focusNode) {
+                //     return TextFormField(
+                //       controller: controller,
+                //       focusNode: focusNode,
+                //       validator: model.validateArea,
+                //       decoration: InputDecoration(
+                //         suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
+                //         enabledBorder: const UnderlineInputBorder(
+                //           borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                //         ),
+                //         focusedBorder: const UnderlineInputBorder(
+                //           borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                //   onSelected:(value) {
+                //     model.setArea(value);
+                //   }, 
+                //   suggestionsCallback:(search) {
+                //     print(model.areas[model.zone]);
+                //     return List<String>.from(model.areas[model.zone]).where((element) => element.toLowerCase().contains(search.toLowerCase())).toList();
+                //   },
+                // ),
                 const SizedBox(height: 40),
                 PrimaryButton.primary(
                   title: 'Submit',
