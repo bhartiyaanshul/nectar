@@ -10,7 +10,16 @@ class LoginViewModel extends ChangeNotifier {
   final _auth = locator<AuthService>();
   // final TextEditingController phoneController = TextEditingController();
   Country? _country;
-  String _zone = 'Location 1';
+  List<String> zones = ['Zone 1', 'Zone 2', 'Zone 3', 'Zone 4', 'Zone 5'];
+  Map<String, dynamic> areas = {
+    'Zone 1': ['Area 1','Area 2','Area 3','Area 4','Area 5'],
+    'Zone 2': ['Area 1','Area 2','Area 3','Area 4','Area 5'],
+    'Zone 3': ['Area 1','Area 2','Area 3','Area 4','Area 5'],
+    'Zone 4': ['Area 1','Area 2','Area 3','Area 4','Area 5'],
+    'Zone 5': ['Area 1','Area 2','Area 3','Area 4','Area 5']
+  };
+  // List<String> areas = ['Area 1','Area 2','Area 3','Area 4','Area 5'];
+  String _zone = 'Zone 1';
   String _area = 'Area 1';
 
   String get zone => _zone;
@@ -18,6 +27,9 @@ class LoginViewModel extends ChangeNotifier {
   Country? get country => _country;
   String _phoneNumber = '';
   String _otp = '';
+
+  final TextEditingController zoneController = TextEditingController();
+  final TextEditingController areaController = TextEditingController();
 
   final _appRouter = locator<AppRouter>();
 
@@ -73,13 +85,15 @@ class LoginViewModel extends ChangeNotifier {
     return null;
   }
 
-  void getZone(String zone){
+  void setZone(String zone){
     _zone = zone;
+    zoneController.text = zone;
     notifyListeners();
   }
 
-  void getArea(String area){
+  void setArea(String area){
     _area = area;
+    areaController.text = area;
     notifyListeners();
   }
 }

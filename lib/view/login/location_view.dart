@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:nectar/core/viewmodel/login_view_model.dart';
 import 'package:nectar/widget/button/primary_button.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +28,9 @@ class LocationView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             Center(child: Image.asset('assets/images/location.png')),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
             Center(
               child: Text(
                 'Select Your Location',
@@ -40,46 +43,76 @@ class LocationView extends StatelessWidget {
               style: Theme.of(context).textTheme.labelMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 90),
+            const SizedBox(height: 70),
             const Text(
               'Your Zone',
               textAlign: TextAlign.left,
             ),
-            DropdownButton(
-              isExpanded: true,
-              hint: const Text('Select Location'),
-        
-              value: model.zone,
-              items: const [
-                DropdownMenuItem(value: 'Location 1', child: Text('Location 1')),
-                DropdownMenuItem(value: 'Location 2', child: Text('Location 2')),
-                DropdownMenuItem(value: 'Location 3', child: Text('Location 3')),
-                DropdownMenuItem(value: 'Location 4', child: Text('Location 4')),
-                DropdownMenuItem(value: 'Location 5', child: Text('Location 5')),
-              ],
-              onChanged: (value) {
-                model.getZone(value.toString());
-              }
+            TypeAheadField<String>(
+              itemBuilder:(context, value) {
+                return ListTile(
+                  tileColor: Colors.white, 
+                  title: Text(value),
+                );
+              },
+              controller: model.zoneController,
+              builder: (context, controller, focusNode) {
+                return TextFormField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  decoration: InputDecoration(
+                    suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                    ),
+                  ),
+                );
+              },
+              onSelected:(value) {
+                model.setZone(value);
+              }, 
+              suggestionsCallback:(search) {
+                return model.zones.where((element) => element.toLowerCase().contains(search.toLowerCase())).toList();
+              },
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 30,),
             const Text(
               'Your Area',
               textAlign: TextAlign.left,
             ),
-            DropdownButton(
-              isExpanded: true,
-              hint: const Text('Select Area'),
-              value: model.area,
-              items: const [
-                DropdownMenuItem(value: 'Area 1', child: Text('Area 1')),
-                DropdownMenuItem(value: 'Area 2', child: Text('Area 2')),
-                DropdownMenuItem(value: 'Area 3', child: Text('Area 3')),
-                DropdownMenuItem(value: 'Area 4', child: Text('Area 4')),
-                DropdownMenuItem(value: 'Area 5', child: Text('Area 5')),
-              ],
-              onChanged: (value) {
-                model.getArea(value.toString());
-              }
+            TypeAheadField<String>(
+              itemBuilder:(context, value) {
+                return ListTile(
+                  tileColor: Colors.white, 
+                  title: Text(value),
+                );
+              },
+              controller: model.areaController,
+              builder: (context, controller, focusNode) {
+                return TextFormField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  decoration: InputDecoration(
+                    suffix: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_drop_down)),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                    ),
+                  ),
+                );
+              },
+              onSelected:(value) {
+                model.setArea(value);
+              }, 
+              suggestionsCallback:(search) {
+                print(model.areas[model.zone]);
+                return List<String>.from(model.areas[model.zone]).where((element) => element.toLowerCase().contains(search.toLowerCase())).toList();
+              },
             ),
             const SizedBox(height: 40),
             PrimaryButton.primary(

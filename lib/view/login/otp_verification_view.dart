@@ -49,7 +49,7 @@ class OtpVerificationView extends StatelessWidget {
                     color: Color(0xff030303),
                   ),
                   decoration: const InputDecoration(
-                    hintText: '- - - -',
+                    hintText: '- - - - - -',
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Color(0xffE2E2E2)),
                     ),
@@ -58,18 +58,6 @@ class OtpVerificationView extends StatelessWidget {
                     ),
                   ),
                 ))
-            // Wrap(
-            //   alignment: WrapAlignment.start,
-            //   spacing: 4,
-            //   direction: Axis.horizontal,
-            //   runSpacing: 10,
-            //   children: [
-            //     _otpTextField(context, true),
-            //     _otpTextField(context, false),
-            //     _otpTextField(context, false),
-            //     _otpTextField(context, false),
-            //   ],
-            // ),
           ],
         ),
       ),
@@ -90,7 +78,7 @@ class OtpVerificationView extends StatelessWidget {
               elevation: 0,
               onPressed: () async {
                 if (_fromKey.currentState?.validate() ?? false) {
-                  await model.verifyOtp();
+                  // await model.verifyOtp();
                   model.navigateToLocation();
                   print('Validated');
                 }
@@ -107,34 +95,4 @@ class OtpVerificationView extends StatelessWidget {
     );
   }
 
-  // Widget _otpTextField(BuildContext context, bool autoFocus) {
-  //   return SizedBox(
-  //     height: MediaQuery.of(context).size.shortestSide * 0.13,
-  //     child: AspectRatio(
-  //       aspectRatio: 1,
-  //       child: TextFormField(
-  //         autofocus: autoFocus,
-  //         decoration: const InputDecoration(
-  //           hintText: '-',
-  //           enabledBorder: UnderlineInputBorder(
-  //             borderSide: BorderSide(color: Color(0xffE2E2E2)),
-  //           ),
-  //           focusedBorder: UnderlineInputBorder(
-  //             borderSide: BorderSide(color: Color(0xffE2E2E2)),
-  //           ),
-  //           border: UnderlineInputBorder()
-  //         ),
-  //         textAlign: TextAlign.center,
-  //         keyboardType: TextInputType.number,
-  //         style: const TextStyle(),
-  //         maxLines: 1,
-  //         onChanged: (value) {
-  //           if (value.isNotEmpty) {
-  //             FocusScope.of(context).nextFocus();
-  //           }
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // }
 }

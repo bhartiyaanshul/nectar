@@ -76,7 +76,7 @@ class PhoneView extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             Text(
-                              '+${model.country?.phoneCode ?? '91'}',
+                              '+${model.country?.phoneCode ?? '--'}',
                               style: const TextStyle(
                                   fontFamily: 'Gilroy',
                                   fontSize: 18,
@@ -94,7 +94,7 @@ class PhoneView extends StatelessWidget {
         elevation: 0,
         onPressed: () async {
           if (_fromKey.currentState?.validate() ?? false) {
-            await model.signinWuthOtp();
+            // await model.signinWuthOtp();
             model.navigateToOtpVerification();
             print('Validated');
           }
