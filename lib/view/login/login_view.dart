@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/core/app_locator.dart';
+import 'package:nectar/core/service/auth_service.dart';
 import 'package:nectar/core/viewmodel/login_view_model.dart';
 import 'package:nectar/widget/button/primary_button.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  LoginView({super.key});
+
+  final _auth = locator<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +82,9 @@ class LoginView extends StatelessWidget {
                 title: 'Continue with google',
                 icon: SvgPicture.asset('assets/icons/google.svg'),
                 color: const Color(0xff5383EC),
-                onTap: () {},
+                onTap: () async {
+                  await _auth.googleSignIn();
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -87,7 +93,9 @@ class LoginView extends StatelessWidget {
                   title: 'Continue with facebook',
                   icon: SvgPicture.asset('assets/icons/facebook.svg'),
                   color: const Color(0xff4A66AC),
-                  onTap: () {}),
+                  onTap: () async {
+                    await _auth.signOut();
+                  }),
               const SizedBox(
                 height: 40,
               )

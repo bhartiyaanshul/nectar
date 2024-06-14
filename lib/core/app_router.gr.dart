@@ -37,7 +37,7 @@ abstract class $AppRouter extends _i7.RootStackRouter {
     LoginRoute.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.LoginView(),
+        child: _i3.LoginView(),
       );
     },
     OnBoardingRoute.name: (routeData) {
