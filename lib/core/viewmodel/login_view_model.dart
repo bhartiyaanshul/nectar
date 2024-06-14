@@ -75,6 +75,15 @@ class LoginViewModel extends ChangeNotifier {
     print('Navigating to phone view...');
   }
 
+  void naviagateToHomeView(){
+    if(_auth.user != null){
+      print('User is signed in');
+      _appRouter.push(const HomevRoute());
+    } else {
+      print('User is not signed in');
+    }
+  }
+
   String? validateContactNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'Contact number is required';

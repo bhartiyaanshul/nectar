@@ -56,7 +56,7 @@ class OnBoardingView extends StatelessWidget {
                       PrimaryButton.primary(
                         title: 'Get Started',
                         onTap: () {
-                          context.pushRoute(const LoginRoute());
+                          context.pushRoute(LoginRoute());
                         },
                       ),
                     ],

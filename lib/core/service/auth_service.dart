@@ -3,6 +3,8 @@ import 'package:nectar/core/supabase.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
+  final user = supabase.auth.currentUser;
+  
   Future<void> signInWithOtp(String phoneNumber) async {
     await supabase.auth.signInWithOtp(
       phone: phoneNumber,

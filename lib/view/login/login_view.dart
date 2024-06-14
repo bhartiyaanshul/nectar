@@ -84,6 +84,7 @@ class LoginView extends StatelessWidget {
                 color: const Color(0xff5383EC),
                 onTap: () async {
                   await _auth.googleSignIn();
+                  model.naviagateToHomeView();
                 },
               ),
               const SizedBox(
@@ -94,7 +95,7 @@ class LoginView extends StatelessWidget {
                   icon: SvgPicture.asset('assets/icons/facebook.svg'),
                   color: const Color(0xff4A66AC),
                   onTap: () async {
-                    await _auth.signOut();
+                    // await _auth.signOut();
                   }),
               const SizedBox(
                 height: 40,
