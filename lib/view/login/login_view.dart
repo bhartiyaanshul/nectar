@@ -24,83 +24,98 @@ class LoginView extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage('assets/images/login_image.png'),
                 alignment: Alignment.topCenter)),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text('Get your groceries\nwith Nectar',
-                  style: Theme.of(context).textTheme.headlineMedium),
-              const SizedBox(height: 20),
-              TextField(
-                autofocus: false,
-                readOnly: true,
-                style: const TextStyle(
-                    fontFamily: 'Gilroy',
-                    fontSize: 18,
-                    color: Color(0xff030303)),
-                onTap: () {
-                  model.navigateToPhone();
-                },
-                cursorColor: const Color(0xff7C7C7C),
-                decoration: const InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xffE2E2E2)),
-                  ),
-                  prefixIcon: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '🇮🇳',
-                        style: TextStyle(fontSize: 22),
-                      ),
-                      SizedBox(width: 12),
-                      Text(
-                        '+91',
-                        style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            fontSize: 18,
-                            color: Color(0xff030303)),
-                      ),
-                      SizedBox(width: 5),
-                    ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const SizedBox(height: 380),
+                Text('Get your groceries\nwith Nectar',
+                    style: Theme.of(context).textTheme.headlineMedium),
+                const SizedBox(height: 20),
+                TextField(
+                  autofocus: false,
+                  readOnly: true,
+                  style: const TextStyle(
+                      fontFamily: 'Gilroy',
+                      fontSize: 18,
+                      color: Color(0xff030303)),
+                  onTap: () {
+                    model.navigateToPhone();
+                  },
+                  cursorColor: const Color(0xff7C7C7C),
+                  decoration: const InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xffE2E2E2)),
+                    ),
+                    prefixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          '🇮🇳',
+                          style: TextStyle(fontSize: 22),
+                        ),
+                        SizedBox(width: 12),
+                        Text(
+                          '+91',
+                          style: TextStyle(
+                              fontFamily: 'Gilroy',
+                              fontSize: 18,
+                              color: Color(0xff030303)),
+                        ),
+                        SizedBox(width: 5),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 40),
-              Center(
-                  child: Text(
-                'or connect with social media',
-                style: Theme.of(context).textTheme.labelSmall,
-              )),
-              const SizedBox(height: 40),
-              PrimaryButton.icon(
-                title: 'Continue with google',
-                icon: SvgPicture.asset('assets/icons/google.svg'),
-                color: const Color(0xff5383EC),
-                onTap: () async {
-                  await _auth.googleSignIn();
-                  model.naviagateToHomeView();
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              PrimaryButton.icon(
-                  title: 'Continue with facebook',
-                  icon: SvgPicture.asset('assets/icons/facebook.svg'),
-                  color: const Color(0xff4A66AC),
+                const SizedBox(height: 40),
+                Center(
+                    child: Text(
+                  'or connect with social media',
+                  style: Theme.of(context).textTheme.labelSmall,
+                )),
+                const SizedBox(height: 40),
+                PrimaryButton.icon(
+                  title: 'Continue with google',
+                  icon: SvgPicture.asset('assets/icons/google.svg'),
+                  color: const Color(0xff5383EC),
                   onTap: () async {
-                    // await _auth.signOut();
-                  }),
-              const SizedBox(
-                height: 40,
-              )
-            ],
+                    await _auth.googleSignIn();
+                    model.naviagateToHomeView();
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                PrimaryButton.icon(
+                    title: 'Continue with facebook',
+                    icon: SvgPicture.asset('assets/icons/facebook.svg'),
+                    color: const Color(0xff4A66AC),
+                    onTap: () async {
+                      // await _auth.signOut();
+                      await _auth.signInWithDiscord();
+                    }),
+                const SizedBox(
+                  height: 20,
+                ),
+                PrimaryButton.icon(
+                    title: 'Continue with Discord',
+                    // icon: Image.asset('assets/icons/discord-logo-png.png'),
+                    color: const Color(0xff4A66AC),
+                    onTap: () async {
+                      // await _auth.signOut();
+                      await _auth.signInWithDiscord();
+                    }),
+                const SizedBox(
+                  height: 40,
+                )
+              ],
+            ),
           ),
         ),
       ),

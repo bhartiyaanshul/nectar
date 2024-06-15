@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   final user = supabase.auth.currentUser;
-  
+
   Future<void> signInWithOtp(String phoneNumber) async {
     await supabase.auth.signInWithOtp(
       phone: phoneNumber,
@@ -30,10 +30,12 @@ class AuthService {
 
   Future<AuthResponse> googleSignIn() async {
     /// Web Client ID that you registered with Google Cloud.
-    const webClientId = '405659510505-v0tht7fprcmtscorki7cjgpbeuqnou1j.apps.googleusercontent.com';
+    const webClientId =
+        '405659510505-v0tht7fprcmtscorki7cjgpbeuqnou1j.apps.googleusercontent.com';
 
     /// iOS Client ID that you registered with Google Cloud.
-    const iosClientId = '405659510505-esvd17m8cr7gf7f9tpmi7go71qnhug8g.apps.googleusercontent.com';
+    const iosClientId =
+        '405659510505-esvd17m8cr7gf7f9tpmi7go71qnhug8g.apps.googleusercontent.com';
 
     // Google sign in on Android will work without providing the Android
     // Client ID registered on Google Cloud.
@@ -59,5 +61,13 @@ class AuthService {
       idToken: idToken,
       accessToken: accessToken,
     );
+  }
+
+  Future<void> signInWithDiscord() async {
+    // await supabase.auth.signInWithOAuth(OAuthProvider.discord);
+    final data = await supabase.auth.signInWithOAuth(
+      OAuthProvider.discord,
+    );
+    print(data);
   }
 }

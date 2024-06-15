@@ -35,9 +35,9 @@ class PrimaryButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: [
-                icon!,
+                icon??const SizedBox(),
                 Text(title,  style: const TextStyle(fontFamily: 'Gilroy', fontSize: 18, color: Color(0xffFFF9FF)),textAlign: TextAlign.center,),
-                Opacity(opacity: 0,child: icon!)
+                Opacity(opacity: 0,child: icon??const SizedBox()),
               ],
             ) : SizedBox(width: 300,child: Text(title,  style: const TextStyle(fontFamily: 'Gilroy', fontSize: 18, color: Color(0xffFFF9FF)),textAlign: TextAlign.center,)),
 
