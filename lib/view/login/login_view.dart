@@ -92,17 +92,17 @@ class LoginView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                PrimaryButton.icon(
-                    title: 'Continue with facebook',
-                    icon: SvgPicture.asset('assets/icons/facebook.svg'),
-                    color: const Color(0xff4A66AC),
-                    onTap: () async {
-                      // await _auth.signOut();
-                      await _auth.signInWithDiscord();
-                    }),
-                const SizedBox(
-                  height: 20,
-                ),
+                // PrimaryButton.icon(
+                //     title: 'Continue with facebook',
+                //     icon: SvgPicture.asset('assets/icons/facebook.svg'),
+                //     color: const Color(0xff4A66AC),
+                //     onTap: () async {
+                //       // await _auth.signOut();
+                //       await _auth.signInWithDiscord();
+                //     }),
+                // const SizedBox(
+                //   height: 20,
+                // ),
                 PrimaryButton.icon(
                     title: 'Continue with Discord',
                     // icon: Image.asset('assets/icons/discord-logo-png.png'),
