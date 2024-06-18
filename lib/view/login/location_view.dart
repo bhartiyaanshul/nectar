@@ -161,8 +161,10 @@ class LocationView extends StatelessWidget {
                 const SizedBox(height: 40),
                 PrimaryButton.primary(
                   title: 'Submit',
-                  onTap: () {
+                  onTap: () async {
                     if (_formkey.currentState?.validate() ?? false) {
+                      await model.addLocation();
+                      model.navigateToHomeView();
                       log('Validated');
                     }
                   },

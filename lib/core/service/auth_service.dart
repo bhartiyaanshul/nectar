@@ -63,10 +63,19 @@ class AuthService {
     );
   }
 
+  Future<void> addLocation(String zone, String area) async {
+    await supabase.from('users').update({
+      'zone': zone,
+      'area': area,
+      'updated_at': DateTime.now().toString(),
+    }).eq('id', user!.id);
+  }
+
   Future<void> signInWithDiscord() async {
     // await supabase.auth.signInWithOAuth(OAuthProvider.discord);
     final data = await supabase.auth.signInWithOAuth(
       OAuthProvider.discord,
+      redirectTo: 'https://dxbfneyqkwbswxshogoy.supabase.co/auth/v1/callback'
     );
     print(data);
   }

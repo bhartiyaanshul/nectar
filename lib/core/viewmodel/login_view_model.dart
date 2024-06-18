@@ -75,7 +75,7 @@ class LoginViewModel extends ChangeNotifier {
     print('Navigating to phone view...');
   }
 
-  void naviagateToHomeView(){
+  void navigateToHomeView(){
     if(_auth.user != null){
       print('User is signed in');
       _appRouter.push(const HomevRoute());
@@ -83,6 +83,8 @@ class LoginViewModel extends ChangeNotifier {
       print('User is not signed in');
     }
   }
+
+  
 
   String? validateContactNumber(String? value) {
     if (value == null || value.isEmpty) {
@@ -104,6 +106,12 @@ class LoginViewModel extends ChangeNotifier {
     _area = area;
     areaController.text = area;
     notifyListeners();
+  }
+
+  Future<void> addLocation() async {
+    print('Zone: $_zone, Area: $_area');
+    await _auth.addLocation(_zone, _area);
+    print('Adding location...');
   }
 
 //  void validateLoaction() {

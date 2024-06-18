@@ -40,7 +40,7 @@ class OtpVerificationView extends StatelessWidget {
                 key: _fromKey,
                 child: PrimaryTextField(
                   onChanged: model.setOTP,
-                  maxLength: 4,
+                  maxLength: 6,
                   keyboardType: TextInputType.phone,
                   hintText: '- - - -',
                 ))

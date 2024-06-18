@@ -86,23 +86,23 @@ class LoginView extends StatelessWidget {
                   color: const Color(0xff5383EC),
                   onTap: () async {
                     await _auth.googleSignIn();
-                    model.naviagateToHomeView();
+                    model.navigateToLocation();
                   },
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                // PrimaryButton.icon(
-                //     title: 'Continue with facebook',
-                //     icon: SvgPicture.asset('assets/icons/facebook.svg'),
-                //     color: const Color(0xff4A66AC),
-                //     onTap: () async {
-                //       // await _auth.signOut();
-                //       await _auth.signInWithDiscord();
-                //     }),
-                // const SizedBox(
-                //   height: 20,
-                // ),
+                PrimaryButton.icon(
+                    title: 'Continue with facebook',
+                    icon: SvgPicture.asset('assets/icons/facebook.svg'),
+                    color: const Color(0xff4A66AC),
+                    onTap: () async {
+                      await _auth.signOut();
+                      // await _auth.signInWithDiscord();
+                    }),
+                const SizedBox(
+                  height: 20,
+                ),
                 PrimaryButton.icon(
                     title: 'Continue with Discord',
                     // icon: Image.asset('assets/icons/discord-logo-png.png'),
