@@ -33,13 +33,15 @@ class ProductCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("\$ $price", style: const TextStyle(fontFamily: 'gilroy', fontSize: 16, color: Color(0xff181725)),),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                decoration: BoxDecoration(
-                  color: const Color(0xff53B175),
-                  borderRadius: BorderRadius.circular(17)
+              InkWell(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff53B175),
+                    borderRadius: BorderRadius.circular(17)
+                  ),
+                  child: const Icon(Icons.add, color: Colors.white,),
                 ),
-                child: const Icon(Icons.add, color: Colors.white,),
               )
             ],
           )

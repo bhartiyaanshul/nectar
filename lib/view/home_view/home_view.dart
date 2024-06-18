@@ -123,8 +123,8 @@ class HomevView extends StatelessWidget {
                     children: [
                       ProductCard(
                           imageUrl: 'assets/icons/logo.png',
-                          productName: 'name',
-                          productDesc: 'name',
+                          productName: 'Product Name',
+                          productDesc: 'Product Description',
                           price: '500'),
                       SizedBox(width: 15),
                     ],
@@ -168,8 +168,54 @@ class HomevView extends StatelessWidget {
                     children: [
                       ProductCard(
                           imageUrl: 'assets/icons/logo.png',
-                          productName: 'name',
-                          productDesc: 'name',
+                          productName: 'Product Name',
+                          productDesc: 'Product Description',
+                          price: '500'),
+                      SizedBox(width: 15),
+                    ],
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                children: [
+                  const Text('Groceries',
+                      style: TextStyle(fontSize: 24, fontFamily: 'Gilroy')),
+                  const Spacer(),
+                  InkWell(
+                    child: TextButton(
+                      child: const Text('See all',
+                          style: TextStyle(
+                              fontFamily: 'gilroy',
+                              fontSize: 16,
+                              color: Color(0xff53B175))),
+                      onPressed: () {},
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 250,
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (_, i) {
+                  return const Row(
+                    children: [
+                      ProductCard(
+                          imageUrl: 'assets/icons/logo.png',
+                          productName: 'Product Name',
+                          productDesc: 'Product Description',
                           price: '500'),
                       SizedBox(width: 15),
                     ],
@@ -181,7 +227,8 @@ class HomevView extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // fixedColor: Colors.black,
+        selectedItemColor: const Color(0xff53B175),
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.storefront_outlined),
@@ -195,14 +242,14 @@ class HomevView extends StatelessWidget {
             icon: Icon(Icons.shopping_cart_outlined),
             label: 'Cart',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.favorite_border_outlined),
-          //   label: 'Favourite',
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.person_outline),
-          //   label: 'Account',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border_outlined),
+            label: 'Favourite',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Account',
+          ),
         ],
       ),
     );
