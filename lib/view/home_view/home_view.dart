@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nectar/core/app_locator.dart';
+import 'package:nectar/core/app_router.gr.dart';
 import 'package:nectar/core/service/auth_service.dart';
 import 'package:nectar/widget/cards/product_card.dart';
 import 'package:nectar/widget/searchfield/primary_searchfield.dart';
@@ -15,8 +17,8 @@ class HomevView extends StatelessWidget {
 
   final _auth = locator<AuthService>();
 
-  final controller = PageController();
   int length = 3;
+  final controller = PageController(initialPage: 999);
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +112,36 @@ class HomevView extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            // CarouselSlider.builder(
+            //   itemCount: 3,
+            //   options: CarouselOptions(height: 260.0),
+            //   itemBuilder: (_, i, __) {
+            //     return Stack(
+            //     children: [
+            //       PageView.builder(
+            //           controller: controller,
+            //           itemCount: 3,
+            //           itemBuilder: (_, i) {
+            //             return Image.asset('assets/images/banner.png');
+            //           }),
+            //       Positioned(
+            //         bottom: 15,
+            //         left: 170,
+            //         child: SmoothPageIndicator(
+            //           controller: controller,
+            //           count: length,
+            //           effect: const ExpandingDotsEffect(
+            //             dotWidth: 10,
+            //             dotHeight: 10,
+            //             activeDotColor: Color.fromARGB(255, 45, 144, 58),
+            //             dotColor: Color(0xff919191),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //     );
+            //   },
+            // ),
             SizedBox(
               height: 260,
               child: ListView.builder(
@@ -118,13 +150,18 @@ class HomevView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (_, i) {
-                  return const Row(
+                  return Row(
                     children: [
-                      ProductCard(
-                          imageUrl: 'assets/icons/logo.png',
-                          productName: 'Product Name',
-                          productDesc: 'Product Description',
-                          price: '500'),
+                      GestureDetector(
+                        onTap: (){
+                          context.router.push(const ProductDetailsRoute());
+                        },
+                        child: const ProductCard(
+                            imageUrl: 'assets/icons/logo.png',
+                            productName: 'Product Name',
+                            productDesc: 'Product Description',
+                            price: '500'),
+                      ),
                       SizedBox(width: 12),
                     ],
                   );
@@ -163,14 +200,19 @@ class HomevView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (_, i) {
-                  return const Row(
+                  return Row(
                     children: [
-                      ProductCard(
-                          imageUrl: 'assets/icons/logo.png',
-                          productName: 'Product Name',
-                          productDesc: 'Product Description',
-                          price: '500'),
-                      SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: (){
+                          context.router.push(const ProductDetailsRoute());
+                        },
+                        child: const ProductCard(
+                            imageUrl: 'assets/icons/logo.png',
+                            productName: 'Product Name',
+                            productDesc: 'Product Description',
+                            price: '500'),
+                      ),
+                      const SizedBox(width: 12),
                     ],
                   );
                 },
@@ -222,19 +264,25 @@ class HomevView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (_, i) {
-                  return const Row(
+                  return Row(
                     children: [
-                      ProductCard(
-                          imageUrl: 'assets/icons/logo.png',
-                          productName: 'Product Name',
-                          productDesc: 'Product Description',
-                          price: '500'),
-                      SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: (){
+                          context.router.push(const ProductDetailsRoute());
+                        },
+                        child: const ProductCard(
+                            imageUrl: 'assets/icons/logo.png',
+                            productName: 'Product Name',
+                            productDesc: 'Product Description',
+                            price: '500'),
+                      ),
+                      const SizedBox(width: 12),
                     ],
                   );
                 },
               ),
             ),
+            const SizedBox(height: 30),
           ],
         ),
       ),
