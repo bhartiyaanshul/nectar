@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nectar/core/app_locator.dart';
-import 'package:nectar/core/app_router.gr.dart';
 import 'package:nectar/core/service/auth_service.dart';
 import 'package:nectar/widget/cards/product_card.dart';
 import 'package:nectar/widget/searchfield/primary_searchfield.dart';
@@ -72,7 +71,7 @@ class HomevView extends StatelessWidget {
                       }),
                   Positioned(
                     bottom: 15,
-                    left: 150,
+                    left: 170,
                     child: SmoothPageIndicator(
                       controller: controller,
                       count: length,
@@ -112,9 +111,9 @@ class HomevView extends StatelessWidget {
               height: 20,
             ),
             SizedBox(
-              height: 250,
+              height: 260,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.only(left: 20),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemCount: 5,
@@ -126,7 +125,7 @@ class HomevView extends StatelessWidget {
                           productName: 'Product Name',
                           productDesc: 'Product Description',
                           price: '500'),
-                      SizedBox(width: 15),
+                      SizedBox(width: 12),
                     ],
                   );
                 },
@@ -157,9 +156,9 @@ class HomevView extends StatelessWidget {
               height: 20,
             ),
             SizedBox(
-              height: 250,
+              height: 260,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.only(left: 20),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemCount: 5,
@@ -171,7 +170,7 @@ class HomevView extends StatelessWidget {
                           productName: 'Product Name',
                           productDesc: 'Product Description',
                           price: '500'),
-                      SizedBox(width: 15),
+                      SizedBox(width: 12),
                     ],
                   );
                 },
@@ -198,14 +197,27 @@ class HomevView extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(
               height: 20,
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SizedBox(
+                height: 115,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    controller: controller,
+                    itemCount: 2,
+                    itemBuilder: (_, i) {
+                      return Image.asset('assets/images/Grains${i + 1}.png');
+                    }),
+              ),
+            ),
+            const SizedBox(height: 30),
             SizedBox(
-              height: 250,
+              height: 260,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.only(left: 20),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemCount: 5,
@@ -217,7 +229,7 @@ class HomevView extends StatelessWidget {
                           productName: 'Product Name',
                           productDesc: 'Product Description',
                           price: '500'),
-                      SizedBox(width: 15),
+                      SizedBox(width: 12),
                     ],
                   );
                 },
