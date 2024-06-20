@@ -15,8 +15,8 @@ class CategoryCard extends StatelessWidget {
         border: Border.all(color: color),
       ),
       width: 170,
-      height: 190,
-      padding: const EdgeInsets.all(30),
+      height: 200,
+      padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,6 +25,7 @@ class CategoryCard extends StatelessWidget {
           const SizedBox(height: 25),
           Center(
             child: Text(
+              textAlign: TextAlign.center,
               categoryName,
               style: const TextStyle(
                   fontFamily: 'gilroy', fontSize: 16, color: Color(0xff181725)),
