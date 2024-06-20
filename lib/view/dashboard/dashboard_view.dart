@@ -8,38 +8,63 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
+    return AutoTabsRouter(
+      // list of your tab routes
+      // routes used here must be declared as children
+      // routes of /dashboard
       routes: [
         HomeRoute(),
+        const ExploreRoute(),
+        HomeRoute(),
+        const ExploreRoute(),
+        const ExploreRoute(),
       ],
-      bottomNavigationBuilder: (_, tabsRouter) {
-        return BottomNavigationBar(
-          selectedItemColor: const Color(0xff53B175),
-          currentIndex: tabsRouter.activeIndex,
-          type: BottomNavigationBarType.fixed,
-          onTap: tabsRouter.setActiveIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.storefront_outlined),
-              label: 'Shop',
-            ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.travel_explore_outlined),
-            //   label: 'Explore',
-            // ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.shopping_cart_outlined),
-            //   label: 'Cart',
-            // ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.favorite_border_outlined),
-            //   label: 'Favourite',
-            // ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.person_outline),
-            //   label: 'Account',
-            // ),
-          ],
+      transitionBuilder: (context, child, animation) => FadeTransition(
+        opacity: animation,
+        // the passed child is technically our animated selected-tab page
+        child: child,
+      ),
+      builder: (context, child) {
+        // obtain the scoped TabsRouter controller using context
+        final tabsRouter = AutoTabsRouter.of(context);
+        // Here we're building our Scaffold inside of AutoTabsRouter
+        // to access the tabsRouter controller provided in this context
+        //
+        // alternatively, you could use a global key
+        
+        return Scaffold(
+          body: child,
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: const Color(0xff53B175),
+            type: BottomNavigationBarType.fixed,
+            currentIndex: tabsRouter.activeIndex,
+            onTap: (index) {
+              // here we switch between tabs
+              tabsRouter.setActiveIndex(index);
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.storefront_outlined),
+                label: 'Shop',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.travel_explore_outlined),
+                label: 'Explore',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_outlined),
+                label: 'Cart',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_border_outlined),
+                label: 'Favourite',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline),
+                label: 'Account',
+              ),
+            ],
+          ),
         );
       },
     );

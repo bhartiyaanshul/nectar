@@ -29,8 +29,13 @@ class MainApp extends StatelessWidget {
           primaryColor: const Color(0xff53B175),
           scaffoldBackgroundColor: const Color(0xffFCFCFC),
           textTheme: const TextTheme(
-            headlineMedium: TextStyle(
+            headlineLarge: TextStyle(
               fontSize: 26,
+              fontFamily: 'Gilroy',
+              fontWeight: FontWeight.w500
+            ),
+            headlineMedium: TextStyle(
+              fontSize: 24,
               fontFamily: 'Gilroy',
               fontWeight: FontWeight.w500
             ),

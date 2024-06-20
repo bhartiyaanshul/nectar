@@ -40,7 +40,7 @@ class LocationView extends StatelessWidget {
                 Center(
                   child: Text(
                     'Select Your Location',
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
                 const SizedBox(height: 15),

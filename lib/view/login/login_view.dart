@@ -33,7 +33,7 @@ class LoginView extends StatelessWidget {
               children: [
                 const SizedBox(height: 380),
                 Text('Get your groceries\nwith Nectar',
-                    style: Theme.of(context).textTheme.headlineMedium),
+                    style: Theme.of(context).textTheme.headlineLarge),
                 const SizedBox(height: 20),
                 TextField(
                   autofocus: false,

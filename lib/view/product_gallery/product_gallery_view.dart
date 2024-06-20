@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/core/app_router.gr.dart';
+import 'package:nectar/view/filter/filter_view.dart';
 import 'package:nectar/widget/cards/category_card.dart';
 import 'package:nectar/widget/cards/product_card.dart';
 
@@ -23,7 +25,22 @@ class ProductGalleryView extends StatelessWidget {
           actions: [
             IconButton(
               icon: SvgPicture.asset('assets/icons/filter.svg'),
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Color(0xffF2F3F2),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  // backgroundColor: const Color(0xffF2F3F2),
+                  useSafeArea: true,
+                  context: context,
+                  builder: (context) => const FilterView(),
+                );
+              },
             )
           ],
         ),

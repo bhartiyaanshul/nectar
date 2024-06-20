@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nectar/widget/accordion/accordion.dart';
 import 'package:nectar/widget/button/primary_button.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 @RoutePage()
 class ProductDetailsView extends StatelessWidget {
@@ -9,50 +12,116 @@ class ProductDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = PageController();
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         children: [
-          Container(
-              height: 370,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(30),
+          // Container(
+          //     height: 370,
+          //     decoration: const BoxDecoration(
+          //       borderRadius: BorderRadius.vertical(
+          //         bottom: Radius.circular(30),
+          //       ),
+          //       image: DecorationImage(
+          //         image: AssetImage('assets/icons/logo.png'),
+          //         fit: BoxFit.cover,
+          //       ),
+          //     ),
+          //     child: Column(
+          //       children: [
+          //         const SizedBox(height: 40),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             IconButton(
+          //               icon: const Icon(
+          //                 Icons.arrow_back_ios_rounded,
+          //                 color: Colors.black,
+          //                 size: 25,
+          //               ),
+          //               onPressed: () {
+          //                 context.router.maybePop();
+          //               },
+          //             ),
+          //             IconButton(
+          //               icon: const Icon(
+          //                 Icons.ios_share_rounded,
+          //                 color: Colors.black,
+          //               ),
+          //               onPressed: () {},
+          //             ),
+          //           ],
+          //         ),
+          //       ],
+          //     )),
+          Stack(children: [
+            Container(
+                height: 370,
+                decoration: const BoxDecoration(
+                  color: Color(0xffF2F3F2),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(30),
+                  ),
                 ),
-                image: DecorationImage(
-                  image: AssetImage('assets/icons/logo.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  height: 200,
+                  child: PageView.builder(
+                      controller: controller,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return SizedBox(
+                          height: 100,
+                          child: Image.asset(
+                            'assets/images/cococola.png',
+                            height: 100,
+                          ),
+                        );
+                      }),
+                )),
+            SafeArea(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.arrow_back_ios_rounded,
-                          color: Colors.black,
-                          size: 25,
-                        ),
-                        onPressed: () {
-                          context.router.maybePop();
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.ios_share_rounded,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios_rounded,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                    onPressed: () {
+                      context.router.maybePop();
+                    },
+                  ),
+                  Spacer(),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.ios_share_rounded,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {},
                   ),
                 ],
-              )),
+              ),
+            ),
+            Positioned(
+              bottom: 15,
+              left: 170,
+              child: SmoothPageIndicator(
+                controller: controller,
+                count: 3,
+                effect: const ExpandingDotsEffect(
+                  dotWidth: 5,
+                  dotHeight: 5,
+                  activeDotColor: Color.fromARGB(255, 45, 144, 58),
+                  dotColor: Color(0xff919191),
+                ),
+              ),
+            ),
+          ]),
           const SizedBox(height: 20),
           Column(children: [
             Padding(
@@ -128,8 +197,6 @@ class ProductDetailsView extends StatelessWidget {
                       fontFamily: 'gilroy',
                       fontWeight: FontWeight.w500),
                 ),
-                
-                
               ]),
             ),
             const SizedBox(height: 30),
@@ -141,21 +208,24 @@ class ProductDetailsView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Accordion(
                 title: 'Product Details',
-                content: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                content:
+                    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
               ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Accordion(
                 title: 'Nuitrition',
-                content: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                content:
+                    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
               ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Accordion(
                 title: 'Review',
-                content: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                content:
+                    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
               ),
             ),
             // ExpansionPanel(

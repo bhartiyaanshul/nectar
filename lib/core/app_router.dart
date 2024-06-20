@@ -11,11 +11,15 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: LoginRoute.page),
         AutoRoute(page: OtpVerificationRoute.page),
         AutoRoute(page: LocationRoute.page,),
-        AutoRoute(page: HomeRoute.page, ),
+        AutoRoute(page: HomeRoute.page,),
         AutoRoute(page: ProductDetailsRoute.page,),
-        AutoRoute(page: DashboardRoute.page,),
-        AutoRoute(page: ExploreRoute.page,initial: true),
-        AutoRoute(page: ProductGalleryRoute.page,),
-        AutoRoute(page: SearchRoute.page, ),
+        AutoRoute(page: DashboardRoute.page,initial: true , children: [
+          AutoRoute(page: HomeRoute.page),
+          AutoRoute(page: ExploreRoute.page),
+          // AutoRoute(page: CartRoute.page),
+        ]),
+        // AutoRoute(page: ExploreRoute.page, ),
+        // AutoRoute(page: ProductGalleryRoute.page,),
+        // AutoRoute(page: SearchRoute.page, ),
       ];
 }
