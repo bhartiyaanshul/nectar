@@ -78,7 +78,7 @@ class LoginViewModel extends ChangeNotifier {
   void navigateToHomeView(){
     if(_auth.user != null){
       print('User is signed in');
-      _appRouter.push(HomevRoute());
+      _appRouter.push(HomeRoute());
     } else {
       print('User is not signed in');
     }

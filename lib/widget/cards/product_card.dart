@@ -52,19 +52,6 @@ class ProductCard extends StatelessWidget {
                     fontSize: 16,
                     color: Color(0xff181725)),
               ),
-              // IconButton(
-              //     style: ButtonStyle(
-              //         shape: MaterialStateProperty.all(
-              //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(17))),
-              //         backgroundColor:
-              //             MaterialStateProperty.all(const Color(0xff53B175))),
-              //     iconSize: Checkbox.width,
-              //     color: const Color(0xff53B175),
-              //     onPressed: () {},
-              //     icon: const Icon(
-              //       Icons.add,
-              //       color: Colors.white,
-              //     ))
               InkWell(
                 borderRadius: BorderRadius.circular(17),
                 splashColor: const Color.fromARGB(255, 41, 101, 63),
