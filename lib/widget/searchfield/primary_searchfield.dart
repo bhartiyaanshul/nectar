@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class PrimarySearchField extends StatelessWidget {
   final String? hintText;
   final Widget? prefixicon;
   final Widget? suffix; 
   final bool autofocus;
-  const PrimarySearchField({super.key, this.hintText, this.prefixicon, this.suffix, this.autofocus = false});
+  final Function()? onTap;
+  const PrimarySearchField({super.key, this.hintText, this.prefixicon, this.suffix, this.autofocus = false, this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    print(suffix);
     return TextField(
+      onTap: onTap,
       focusNode: FocusNode(),
       autofocus: autofocus,
       style: const TextStyle(
@@ -37,7 +39,7 @@ class PrimarySearchField extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none
         ),
-        suffix: suffix,
+        suffixIcon: suffix,
       )
     );
   }

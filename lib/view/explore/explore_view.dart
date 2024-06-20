@@ -29,6 +29,9 @@ class ExploreView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               PrimarySearchField(
+                onTap: (){
+                  context.router.push(const SearchRoute());
+                },
                 hintText: 'Search Store',
                 prefixicon: SvgPicture.asset(
                   'assets/icons/search.svg',
@@ -48,7 +51,7 @@ class ExploreView extends StatelessWidget {
                             crossAxisSpacing: 15,
                             mainAxisExtent: 190),
                     itemBuilder: (context, index) {
-                      return GestureDetector(
+                      return InkWell(
                         onTap: () {
                           context.router.push(const ProductGalleryRoute());
                         },
