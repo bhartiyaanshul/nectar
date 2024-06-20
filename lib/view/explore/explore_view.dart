@@ -34,14 +34,28 @@ class ExploreView extends StatelessWidget {
                 ),
               ),
             ),
-            GridView.builder(
-                itemCount: 10,
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 2),
-                itemBuilder: (context, index) {
-                  return const CategoryCard(
-                      imageUrl: 'assets/icons/logo.png',
-                      categoryName: 'Fruits');
-                }),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: SizedBox(
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 10,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 15,
+                        mainAxisExtent: 190
+                        ),
+                    itemBuilder: (context, index) {
+                      return CategoryCard(
+                          color: Colors.primaries[index],
+                          imageUrl: 'assets/icons/logo.png',
+                          categoryName: 'Fruits');
+                    }),
+              ),
+            ),
             // CategoryCard(
             //     imageUrl: 'assets/icons/logo.png', categoryName: 'Fruits'),
           ],
