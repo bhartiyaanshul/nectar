@@ -15,7 +15,7 @@ class DashboardView extends StatelessWidget {
       routes: [
         HomeRoute(),
         const ExploreRoute(),
-        HomeRoute(),
+        const CartRoute(),
         const ExploreRoute(),
         const AccountRoute(),
       ],
