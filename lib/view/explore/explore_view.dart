@@ -55,7 +55,7 @@ class ExploreView extends StatelessWidget {
                         onTap: () {
                           context.router.push(const ProductGalleryRoute());
                         },
-                        child: CategoryCard(
+                        child: CategoryCard.vertical(
                             color: Colors.primaries[index],
                             imageUrl: 'assets/icons/logo.png',
                             categoryName: 'Fruits & vegitables'),

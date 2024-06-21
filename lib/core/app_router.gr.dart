@@ -10,10 +10,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:flutter/material.dart' as _i15;
-import 'package:nectar/view/cart/cart_view.dart' as _i1;
-import 'package:nectar/view/dashboard/dashboard_view.dart' as _i2;
-import 'package:nectar/view/explore/explore_view.dart' as _i3;
-import 'package:nectar/view/filter/filter_view.dart' as _i4;
+import 'package:nectar/view/account/account_view.dart' as _i1;
+import 'package:nectar/view/cart2/cart_view2.dart' as _i2;
+import 'package:nectar/view/dashboard/dashboard_view.dart' as _i3;
+import 'package:nectar/view/explore/explore_view.dart' as _i4;
 import 'package:nectar/view/home_view/home_view.dart' as _i5;
 import 'package:nectar/view/login/location_view.dart' as _i6;
 import 'package:nectar/view/login/login_view.dart' as _i7;
@@ -29,28 +29,28 @@ abstract class $AppRouter extends _i14.RootStackRouter {
 
   @override
   final Map<String, _i14.PageFactory> pagesMap = {
+    AccountRoute.name: (routeData) {
+      return _i14.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.AccountView(),
+      );
+    },
     CartRoute.name: (routeData) {
       return _i14.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.CartView(),
+        child: const _i2.CartView(),
       );
     },
     DashboardRoute.name: (routeData) {
       return _i14.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.DashboardView(),
+        child: const _i3.DashboardView(),
       );
     },
     ExploreRoute.name: (routeData) {
       return _i14.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.ExploreView(),
-      );
-    },
-    FilterRoute.name: (routeData) {
-      return _i14.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.FilterView(),
+        child: const _i4.ExploreView(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -121,7 +121,21 @@ abstract class $AppRouter extends _i14.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.CartView]
+/// [_i1.AccountView]
+class AccountRoute extends _i14.PageRouteInfo<void> {
+  const AccountRoute({List<_i14.PageRouteInfo>? children})
+      : super(
+          AccountRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AccountRoute';
+
+  static const _i14.PageInfo<void> page = _i14.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.CartView]
 class CartRoute extends _i14.PageRouteInfo<void> {
   const CartRoute({List<_i14.PageRouteInfo>? children})
       : super(
@@ -135,7 +149,7 @@ class CartRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.DashboardView]
+/// [_i3.DashboardView]
 class DashboardRoute extends _i14.PageRouteInfo<void> {
   const DashboardRoute({List<_i14.PageRouteInfo>? children})
       : super(
@@ -149,7 +163,7 @@ class DashboardRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.ExploreView]
+/// [_i4.ExploreView]
 class ExploreRoute extends _i14.PageRouteInfo<void> {
   const ExploreRoute({List<_i14.PageRouteInfo>? children})
       : super(
@@ -158,20 +172,6 @@ class ExploreRoute extends _i14.PageRouteInfo<void> {
         );
 
   static const String name = 'ExploreRoute';
-
-  static const _i14.PageInfo<void> page = _i14.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i4.FilterView]
-class FilterRoute extends _i14.PageRouteInfo<void> {
-  const FilterRoute({List<_i14.PageRouteInfo>? children})
-      : super(
-          FilterRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FilterRoute';
 
   static const _i14.PageInfo<void> page = _i14.PageInfo<void>(name);
 }

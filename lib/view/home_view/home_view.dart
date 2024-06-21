@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nectar/core/app_locator.dart';
 import 'package:nectar/core/app_router.gr.dart';
 import 'package:nectar/core/service/auth_service.dart';
+import 'package:nectar/widget/cards/category_card.dart';
 import 'package:nectar/widget/cards/product_card.dart';
 import 'package:nectar/widget/searchfield/primary_searchfield.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -120,11 +121,11 @@ class HomeView extends StatelessWidget {
                   return Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           context.router.push(const ProductDetailsRoute());
                         },
                         child: const ProductCard(
-                            imageUrl: 'assets/icons/logo.png',
+                            imageUrl: 'assets/images/cococola.png',
                             productName: 'Product Name',
                             productDesc: 'Product Description',
                             price: '500'),
@@ -170,11 +171,11 @@ class HomeView extends StatelessWidget {
                   return Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           context.router.push(const ProductDetailsRoute());
                         },
                         child: const ProductCard(
-                            imageUrl: 'assets/icons/logo.png',
+                            imageUrl: 'assets/images/cococola.png',
                             productName: 'Product Name',
                             productDesc: 'Product Description',
                             price: '500'),
@@ -218,7 +219,13 @@ class HomeView extends StatelessWidget {
                     controller: controller,
                     itemCount: 2,
                     itemBuilder: (_, i) {
-                      return Image.asset('assets/images/Grains${i + 1}.png');
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 1),
+                        child: CategoryCard.horizontal(
+                            imageUrl: 'assets/images/cococola.png',
+                            categoryName: 'categoryName',
+                            color: Colors.primaries[i]),
+                      );
                     }),
               ),
             ),
@@ -234,11 +241,11 @@ class HomeView extends StatelessWidget {
                   return Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           context.router.push(const ProductDetailsRoute());
                         },
                         child: const ProductCard(
-                            imageUrl: 'assets/icons/logo.png',
+                            imageUrl: 'assets/images/cococola.png',
                             productName: 'Product Name',
                             productDesc: 'Product Description',
                             price: '500'),
@@ -253,32 +260,6 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   selectedItemColor: const Color(0xff53B175),
-      //   type: BottomNavigationBarType.fixed,
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.storefront_outlined),
-      //       label: 'Shop',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.travel_explore_outlined),
-      //       label: 'Explore',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.shopping_cart_outlined),
-      //       label: 'Cart',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.favorite_border_outlined),
-      //       label: 'Favourite',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person_outline),
-      //       label: 'Account',
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
