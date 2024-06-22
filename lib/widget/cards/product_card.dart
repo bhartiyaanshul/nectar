@@ -13,21 +13,23 @@ class ProductCard extends StatelessWidget {
       required this.productDesc,
       required this.price});
 
+
   @override
   Widget build(BuildContext context) {
+    final baseUrl = 'https://dxbfneyqkwbswxshogoy.supabase.co/storage/v1/object/public/content/';
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: const Color(0xffE2E2E2)),
+        // color: Colors.white,
       ),
       width: 170,
-      height: 260,
       padding: const EdgeInsets.all(15),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: Image.asset(imageUrl!, width: 100, height: 80)),
+          Expanded(child: Center(child: Image.network(baseUrl+imageUrl!,height: 70))),
           const SizedBox(height: 25),
           Text(
             productName!,

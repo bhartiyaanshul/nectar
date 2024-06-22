@@ -53,7 +53,7 @@ class CategoryCard extends StatelessWidget {
           )
         : Container(
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withOpacity(0.13),
               borderRadius: BorderRadius.circular(15),
             ),
             width: 250,

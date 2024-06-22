@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/core/app_router.gr.dart';
 import 'package:nectar/view/filter/filter_view.dart';
 import 'package:nectar/widget/cards/product_card.dart';
 import 'package:nectar/widget/searchfield/primary_searchfield.dart';
@@ -67,11 +68,16 @@ class SearchView extends StatelessWidget {
                             crossAxisSpacing: 15,
                             mainAxisExtent: 250),
                     itemBuilder: (context, index) {
-                      return const ProductCard(
-                          imageUrl: 'assets/images/cococola.png',
-                          productName: 'productName',
-                          productDesc: 'productDesc',
-                          price: '100');
+                      return GestureDetector(
+                        onTap: (){
+                          AutoRouter.of(context).push(const ProductDetailsRoute());
+                        },
+                        child: const ProductCard(
+                            imageUrl: 'assets/images/cococola.png',
+                            productName: 'productName',
+                            productDesc: 'productDesc',
+                            price: '100'),
+                      );
                     }),
               )
             ],

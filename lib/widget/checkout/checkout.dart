@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nectar/core/app_router.gr.dart';
 import 'package:nectar/widget/button/primary_button.dart';
+import 'package:nectar/widget/order/order_failed_alertbox.dart';
 
 class Checkout extends StatelessWidget {
   const Checkout({super.key});
@@ -115,7 +118,13 @@ class Checkout extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: PrimaryButton.primary(
               title: 'Place Order',
-              onTap: () {},
+              onTap: () {
+                // context.router.push(const OrderAcceptedRoute());
+                showDialog(context: context, builder: (context) => const OrderFailedAlertBox());
+                // showAboutDialog(context: context, children: const [
+                //   OrderFailedAlertBox(),
+                // ]);
+              },
             ),
           ),
         ],

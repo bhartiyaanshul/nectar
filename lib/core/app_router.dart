@@ -12,7 +12,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: LocationRoute.page,),
         AutoRoute(page: HomeRoute.page,),
         AutoRoute(page: ProductDetailsRoute.page,),
-        AutoRoute(page: DashboardRoute.page,initial: true , children: [
+        AutoRoute(page: DashboardRoute.page, initial: true, children: [
           AutoRoute(page: HomeRoute.page),
           AutoRoute(page: ExploreRoute.page),
           AutoRoute(page: AccountRoute.page),
@@ -23,7 +23,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: SearchRoute.page, ),
         AutoRoute(page: AccountRoute.page,),
         AutoRoute(page: CartRoute.page),
-
-
+        AutoRoute(page: OrderAcceptedRoute.page,),
       ];
 }
