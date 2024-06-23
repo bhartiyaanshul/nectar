@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 enum CategoryStyle { horizontal, vertical }
 
@@ -22,10 +23,11 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseUrl = 'https://dxbfneyqkwbswxshogoy.supabase.co/storage/v1/object/public/content/';
     return _categoryStyle == CategoryStyle.vertical
         ? Container(
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withOpacity(0.15),
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: color),
             ),
@@ -36,7 +38,7 @@ class CategoryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.asset(imageUrl, width: 100, height: 80)),
+                Center(child: Image.network(baseUrl+imageUrl, height: 80)),
                 const SizedBox(height: 25),
                 Center(
                   child: Text(
@@ -58,21 +60,23 @@ class CategoryCard extends StatelessWidget {
             ),
             width: 250,
             height: 105,
-            // padding: const EdgeInsets.fromLTRB(25, 25, 25, 10),
+            padding: const EdgeInsets.all(15),
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.asset(imageUrl, width: 100, height: 80)),
+                Center(child: Image.network(baseUrl+imageUrl,height: 80)),
                 const SizedBox(height: 25),
-                Center(
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    categoryName,
-                    style: const TextStyle(
-                        fontFamily: 'gilroy',
-                        fontSize: 16,
-                        color: Color(0xff181725)),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      categoryName,
+                      style: const TextStyle(
+                          fontFamily: 'gilroy',
+                          fontSize: 16,
+                          color: Color(0xff181725)),
+                    ),
                   ),
                 ),
               ],

@@ -21,10 +21,12 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => locator<HomeViewModel>(),
+        create: (context) => HomeViewModel(),
         builder: (context, child) {
           final model = context.watch<HomeViewModel>();
-          print(model.products);
+          // print(model.products);
+          // print(model.categories.length);
+          // print(model.categories);
           return Scaffold(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: SafeArea(
@@ -233,14 +235,14 @@ class HomeView extends StatelessWidget {
                             ),
                         scrollDirection: Axis.horizontal,
                         controller: controller,
-                        itemCount: 2,
+                        itemCount: model.categories.length,
                         itemBuilder: (_, i) {
                           return Padding(
                             padding: const EdgeInsets.only(left: 1),
                             child: CategoryCard.horizontal(
-                                imageUrl: 'assets/images/cococola.png',
-                                categoryName: 'categoryName',
-                                color: Colors.primaries[i]),
+                                imageUrl: model.categories[i].image,
+                                categoryName: model.categories[i].name,
+                                color: Colors.primaries[i % Colors.primaries.length]),
                           );
                         }),
                   ),
