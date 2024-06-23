@@ -60,7 +60,9 @@ class ExploreView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            context.router.push(const ProductGalleryRoute());
+                            context.router.push(ProductGalleryRoute(
+                                category: model.categories[index]
+                            ));
                           },
                           child: CategoryCard.vertical(
                               color: Colors.primaries[index % Colors.primaries.length],

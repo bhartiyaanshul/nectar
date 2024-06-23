@@ -70,7 +70,7 @@ class SearchView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: (){
-                          AutoRouter.of(context).push(const ProductDetailsRoute());
+                          // AutoRouter.of(context).push(const ProductDetailsRoute());
                         },
                         child: const ProductCard(
                             imageUrl: 'assets/images/cococola.png',

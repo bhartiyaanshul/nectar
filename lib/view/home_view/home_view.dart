@@ -24,9 +24,6 @@ class HomeView extends StatelessWidget {
         create: (context) => HomeViewModel(),
         builder: (context, child) {
           final model = context.watch<HomeViewModel>();
-          // print(model.products);
-          // print(model.categories.length);
-          // print(model.categories);
           return Scaffold(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: SafeArea(
@@ -135,7 +132,9 @@ class HomeView extends StatelessWidget {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(15),
                             onTap: () {
-                              context.router.push(const ProductDetailsRoute());
+                              context.router.push(ProductDetailsRoute(
+                                  product: model.products[i]
+                              ));
                             },
                             child: ProductCard(
                                 imageUrl: model.products[i].images[0],
@@ -189,7 +188,9 @@ class HomeView extends StatelessWidget {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(15),
                             onTap: () {
-                              context.router.push(const ProductDetailsRoute());
+                              context.router.push(ProductDetailsRoute(
+                                  product: model.products[i]
+                              ));
                             },
                             child: ProductCard(
                                 imageUrl: model.products[i].images[0],
@@ -217,7 +218,9 @@ class HomeView extends StatelessWidget {
                                     fontFamily: 'gilroy',
                                     fontSize: 16,
                                     color: Color(0xff53B175))),
-                            onPressed: () {},
+                            onPressed: () {
+                              context.router.push(const ExploreRoute());
+                            },
                           ),
                         )
                       ],
@@ -237,12 +240,21 @@ class HomeView extends StatelessWidget {
                         controller: controller,
                         itemCount: model.categories.length,
                         itemBuilder: (_, i) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 1),
-                            child: CategoryCard.horizontal(
-                                imageUrl: model.categories[i].image,
-                                categoryName: model.categories[i].name,
-                                color: Colors.primaries[i % Colors.primaries.length]),
+                          return Material(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(15),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(15),
+                              onTap: () {
+                                context.router.push(ProductGalleryRoute(
+                                    category: model.categories[i]
+                                ));
+                              },
+                              child: CategoryCard.horizontal(
+                                  imageUrl: model.categories[i].image,
+                                  categoryName: model.categories[i].name,
+                                  color: Colors.primaries[i % Colors.primaries.length]),
+                            ),
                           );
                         }),
                   ),
@@ -264,7 +276,9 @@ class HomeView extends StatelessWidget {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(15),
                             onTap: () {
-                              context.router.push(const ProductDetailsRoute());
+                              context.router.push(ProductDetailsRoute(
+                                  product: model.products[i]
+                              ));
                             },
                             child: ProductCard(
                                 imageUrl: model.products[i].images[0],

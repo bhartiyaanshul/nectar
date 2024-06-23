@@ -9,7 +9,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i15;
+import 'package:flutter/cupertino.dart' as _i17;
 import 'package:flutter/material.dart' as _i16;
+import 'package:nectar/core/model/category_model.dart' as _i19;
+import 'package:nectar/core/model/product_model.dart' as _i18;
 import 'package:nectar/view/account/account_view.dart' as _i1;
 import 'package:nectar/view/cart/cart_view.dart' as _i2;
 import 'package:nectar/view/dashboard/dashboard_view.dart' as _i3;
@@ -107,15 +110,23 @@ abstract class $AppRouter extends _i15.RootStackRouter {
       );
     },
     ProductDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductDetailsRouteArgs>();
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.ProductDetailsView(),
+        child: _i12.ProductDetailsView(
+          key: args.key,
+          product: args.product,
+        ),
       );
     },
     ProductGalleryRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductGalleryRouteArgs>();
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i13.ProductGalleryView(),
+        child: _i13.ProductGalleryView(
+          key: args.key,
+          category: args.category,
+        ),
       );
     },
     SearchRoute.name: (routeData) {
@@ -359,30 +370,78 @@ class PhoneRouteArgs {
 
 /// generated route for
 /// [_i12.ProductDetailsView]
-class ProductDetailsRoute extends _i15.PageRouteInfo<void> {
-  const ProductDetailsRoute({List<_i15.PageRouteInfo>? children})
-      : super(
+class ProductDetailsRoute extends _i15.PageRouteInfo<ProductDetailsRouteArgs> {
+  ProductDetailsRoute({
+    _i17.Key? key,
+    required _i18.ProductModel product,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
           ProductDetailsRoute.name,
+          args: ProductDetailsRouteArgs(
+            key: key,
+            product: product,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ProductDetailsRoute';
 
-  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+  static const _i15.PageInfo<ProductDetailsRouteArgs> page =
+      _i15.PageInfo<ProductDetailsRouteArgs>(name);
+}
+
+class ProductDetailsRouteArgs {
+  const ProductDetailsRouteArgs({
+    this.key,
+    required this.product,
+  });
+
+  final _i17.Key? key;
+
+  final _i18.ProductModel product;
+
+  @override
+  String toString() {
+    return 'ProductDetailsRouteArgs{key: $key, product: $product}';
+  }
 }
 
 /// generated route for
 /// [_i13.ProductGalleryView]
-class ProductGalleryRoute extends _i15.PageRouteInfo<void> {
-  const ProductGalleryRoute({List<_i15.PageRouteInfo>? children})
-      : super(
+class ProductGalleryRoute extends _i15.PageRouteInfo<ProductGalleryRouteArgs> {
+  ProductGalleryRoute({
+    _i16.Key? key,
+    required _i19.CategoryModel category,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
           ProductGalleryRoute.name,
+          args: ProductGalleryRouteArgs(
+            key: key,
+            category: category,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ProductGalleryRoute';
 
-  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+  static const _i15.PageInfo<ProductGalleryRouteArgs> page =
+      _i15.PageInfo<ProductGalleryRouteArgs>(name);
+}
+
+class ProductGalleryRouteArgs {
+  const ProductGalleryRouteArgs({
+    this.key,
+    required this.category,
+  });
+
+  final _i16.Key? key;
+
+  final _i19.CategoryModel category;
+
+  @override
+  String toString() {
+    return 'ProductGalleryRouteArgs{key: $key, category: $category}';
+  }
 }
 
 /// generated route for

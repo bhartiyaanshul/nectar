@@ -2,16 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nectar/core/model/product_model.dart';
 import 'package:nectar/widget/accordion/accordion.dart';
 import 'package:nectar/widget/button/primary_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 @RoutePage()
 class ProductDetailsView extends StatelessWidget {
-  const ProductDetailsView({super.key});
+  final ProductModel product;
+  const ProductDetailsView({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
+    final baseUrl = 'https://dxbfneyqkwbswxshogoy.supabase.co/storage/v1/object/public/content/';
     final controller = PageController();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -19,44 +22,6 @@ class ProductDetailsView extends StatelessWidget {
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         children: [
-          // Container(
-          //     height: 370,
-          //     decoration: const BoxDecoration(
-          //       borderRadius: BorderRadius.vertical(
-          //         bottom: Radius.circular(30),
-          //       ),
-          //       image: DecorationImage(
-          //         image: AssetImage('assets/icons/logo.png'),
-          //         fit: BoxFit.cover,
-          //       ),
-          //     ),
-          //     child: Column(
-          //       children: [
-          //         const SizedBox(height: 40),
-          //         Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             IconButton(
-          //               icon: const Icon(
-          //                 Icons.arrow_back_ios_rounded,
-          //                 color: Colors.black,
-          //                 size: 25,
-          //               ),
-          //               onPressed: () {
-          //                 context.router.maybePop();
-          //               },
-          //             ),
-          //             IconButton(
-          //               icon: const Icon(
-          //                 Icons.ios_share_rounded,
-          //                 color: Colors.black,
-          //               ),
-          //               onPressed: () {},
-          //             ),
-          //           ],
-          //         ),
-          //       ],
-          //     )),
           Stack(children: [
             Container(
                 height: 370,
@@ -71,12 +36,12 @@ class ProductDetailsView extends StatelessWidget {
                   height: 200,
                   child: PageView.builder(
                       controller: controller,
-                      itemCount: 3,
+                      itemCount: product.images.length,
                       itemBuilder: (context, index) {
                         return SizedBox(
                           height: 100,
-                          child: Image.asset(
-                            'assets/images/cococola.png',
+                          child: Image.network(
+                            baseUrl+product.images[index],
                             height: 100,
                           ),
                         );
@@ -96,7 +61,7 @@ class ProductDetailsView extends StatelessWidget {
                       context.router.maybePop();
                     },
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                     icon: const Icon(
                       Icons.ios_share_rounded,
@@ -128,19 +93,19 @@ class ProductDetailsView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Product Name',
-                        style: TextStyle(
+                        product.name,
+                        style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w500,
                             fontFamily: 'gilroy'),
                       ),
                       Text(
-                        'Product Description',
-                        style: TextStyle(
+                        product.description,
+                        style: const TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
                             fontFamily: 'gilroy'),
@@ -190,9 +155,9 @@ class ProductDetailsView extends StatelessWidget {
                   onPressed: () {},
                 ),
                 const Spacer(),
-                const Text(
-                  '\$ 100',
-                  style: TextStyle(
+                Text(
+                  '\$ ${product.price}',
+                  style: const TextStyle(
                       fontSize: 24,
                       fontFamily: 'gilroy',
                       fontWeight: FontWeight.w500),
@@ -204,20 +169,22 @@ class ProductDetailsView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Divider(),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Accordion(
                 title: 'Product Details',
                 content:
-                    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                    product.description,
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Accordion(
                 title: 'Nuitrition',
                 content:
-                    'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                    product.specifications.entries
+                        .map((e) => '${e.key}: ${e.value}')
+                        .join('\n'),
               ),
             ),
             const Padding(
