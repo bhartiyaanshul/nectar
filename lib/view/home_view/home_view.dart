@@ -55,6 +55,7 @@ class HomeView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: PrimarySearchField(
+                      onChanged: (val){},
                       hintText: 'Search Store',
                       prefixicon: SvgPicture.asset(
                         'assets/icons/search.svg',
@@ -126,23 +127,9 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: model.products.length,
                       itemBuilder: (_, i) {
-                        return Material(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(15),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(15),
-                            onTap: () {
-                              context.router.push(ProductDetailsRoute(
-                                  product: model.products[i]
-                              ));
-                            },
-                            child: ProductCard(
-                                imageUrl: model.products[i].images[0],
-                                productName: model.products[i].name,
-                                productDesc: model.products[i].description,
-                                price: model.products[i].price.toString()),
-                          ),
-                        );
+                        return ProductCard(product: model.products[i], onTap: (){
+                          model.nagivateToProductDetails(model.products[i]);
+                        },);
                       },
                     ),
                   ),
@@ -182,23 +169,9 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: model.products.length,
                       itemBuilder: (_, i) {
-                        return Material(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(15),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(15),
-                            onTap: () {
-                              context.router.push(ProductDetailsRoute(
-                                  product: model.products[i]
-                              ));
-                            },
-                            child: ProductCard(
-                                imageUrl: model.products[i].images[0],
-                                productName: model.products[i].name,
-                                productDesc: model.products[i].description,
-                                price: model.products[i].price.toString()),
-                          ),
-                        );
+                        return ProductCard(product: model.products[i], onTap: (){
+                          model.nagivateToProductDetails(model.products[i]);
+                        },);
                       },
                     ),
                   ),
@@ -240,22 +213,12 @@ class HomeView extends StatelessWidget {
                         controller: controller,
                         itemCount: model.categories.length,
                         itemBuilder: (_, i) {
-                          return Material(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(15),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(15),
-                              onTap: () {
-                                context.router.push(ProductGalleryRoute(
-                                    category: model.categories[i]
-                                ));
+                          return CategoryCard.horizontal(
+                              category: model.categories[i],
+                              onTap: (){
+                                model.navigateToProductGallery(model.categories[i]);
                               },
-                              child: CategoryCard.horizontal(
-                                  imageUrl: model.categories[i].image,
-                                  categoryName: model.categories[i].name,
-                                  color: Colors.primaries[i % Colors.primaries.length]),
-                            ),
-                          );
+                              color: Colors.primaries[i % Colors.primaries.length]);
                         }),
                   ),
                   const SizedBox(height: 30),
@@ -270,23 +233,9 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: model.products.length,
                       itemBuilder: (_, i) {
-                        return Material(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(15),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(15),
-                            onTap: () {
-                              context.router.push(ProductDetailsRoute(
-                                  product: model.products[i]
-                              ));
-                            },
-                            child: ProductCard(
-                                imageUrl: model.products[i].images[0],
-                                productName: model.products[i].name,
-                                productDesc: model.products[i].description,
-                                price: model.products[i].price.toString()),
-                          ),
-                        );
+                        return ProductCard(product: model.products[i], onTap: (){
+                          model.nagivateToProductDetails(model.products[i]);
+                        },);
                       },
                     ),
                   ),

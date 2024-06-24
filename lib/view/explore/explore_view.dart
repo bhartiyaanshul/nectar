@@ -36,6 +36,7 @@ class ExploreView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PrimarySearchField(
+                  onChanged: (val){},
                   onTap: (){
                     context.router.push(const SearchRoute());
                   },
@@ -58,17 +59,14 @@ class ExploreView extends StatelessWidget {
                               crossAxisSpacing: 15,
                               mainAxisExtent: 190),
                       itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            context.router.push(ProductGalleryRoute(
-                                category: model.categories[index]
-                            ));
-                          },
-                          child: CategoryCard.vertical(
-                              color: Colors.primaries[index % Colors.primaries.length],
-                              imageUrl: model.categories[index].image,
-                              categoryName: model.categories[index].name),
-                        );
+                        return CategoryCard.vertical(
+                            color: Colors.primaries[index % Colors.primaries.length],
+                            category: model.categories[index],
+                            onTap: () {
+                              model.navigateToProductGallery(
+                                  model.categories[index]);
+                            },
+                            );
                       }),
                 )
             

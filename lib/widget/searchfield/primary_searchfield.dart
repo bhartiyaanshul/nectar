@@ -6,13 +6,15 @@ class PrimarySearchField extends StatelessWidget {
   final Widget? suffix; 
   final bool autofocus;
   final Function()? onTap;
-  const PrimarySearchField({super.key, this.hintText, this.prefixicon, this.suffix, this.autofocus = false, this.onTap});
+  final void Function(String)? onChanged;
+  const PrimarySearchField({super.key, this.hintText, this.prefixicon, this.suffix, this.autofocus = false, this.onTap, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     print(suffix);
     return TextField(
       onTap: onTap,
+      onChanged: onChanged,
       focusNode: FocusNode(),
       autofocus: autofocus,
       style: const TextStyle(

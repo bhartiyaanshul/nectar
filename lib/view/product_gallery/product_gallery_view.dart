@@ -68,12 +68,7 @@ class ProductGalleryView extends StatelessWidget {
                           product: model.products[index]
                       ));
                     },
-                    child: ProductCard(
-                        imageUrl: model.products[index].images[0],
-                        productName: model.products[index].name,
-                        productDesc: model.products[index].description,
-                        price: model.products[index].price.toString(),
-                  ));
+                    child: ProductCard(product: model.products[index],),);
                 }),
           ));
   });

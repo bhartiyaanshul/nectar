@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:nectar/core/model/product_model.dart';
 import 'package:nectar/widget/accordion/accordion.dart';
 import 'package:nectar/widget/button/primary_button.dart';
+import 'package:nectar/widget/supabase_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 @RoutePage()
@@ -40,8 +41,8 @@ class ProductDetailsView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return SizedBox(
                           height: 100,
-                          child: Image.network(
-                            baseUrl+product.images[index],
+                          child: SupabaseImage(
+                            path: product.images[index],
                             height: 100,
                           ),
                         );
