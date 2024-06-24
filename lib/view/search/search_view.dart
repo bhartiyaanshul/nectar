@@ -30,6 +30,7 @@ class SearchView extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: PrimarySearchField(
+                          autofocus: true,
                           onChanged: (value) => model.getSearchData(value),
                           hintText: 'Search Store',
                           prefixicon: SvgPicture.asset(

@@ -105,7 +105,7 @@ class ProductDetailsView extends StatelessWidget {
                             fontFamily: 'gilroy'),
                       ),
                       Text(
-                        product.description,
+                        product.brand.name,
                         style: const TextStyle(
                             fontSize: 16,
                             color: Colors.grey,

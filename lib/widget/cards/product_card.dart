@@ -43,7 +43,7 @@ class ProductCard extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                product.description,
+                product.brand.name,
                 style: const TextStyle(
                     fontFamily: 'gilroy',
                     fontSize: 14,

@@ -26,4 +26,9 @@ class ExploreViewModel extends BaseViewModel {
     _appRouter.push(ProductGalleryRoute(category: category));
     print('Navigating to product gallery...');
   }
+
+  void navigateToSearch() {
+    _appRouter.push(const SearchRoute());
+    print('Navigating to search...');
+  }
 }

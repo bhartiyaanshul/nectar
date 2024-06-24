@@ -55,7 +55,10 @@ class HomeView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: PrimarySearchField(
-                      onChanged: (val){},
+                      onChanged: (val) {},
+                      onTap: () {
+                        model.navigateToSearch();
+                      },
                       hintText: 'Search Store',
                       prefixicon: SvgPicture.asset(
                         'assets/icons/search.svg',
@@ -127,9 +130,12 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: model.products.length,
                       itemBuilder: (_, i) {
-                        return ProductCard(product: model.products[i], onTap: (){
-                          model.nagivateToProductDetails(model.products[i]);
-                        },);
+                        return ProductCard(
+                          product: model.products[i],
+                          onTap: () {
+                            model.nagivateToProductDetails(model.products[i]);
+                          },
+                        );
                       },
                     ),
                   ),
@@ -169,9 +175,12 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: model.products.length,
                       itemBuilder: (_, i) {
-                        return ProductCard(product: model.products[i], onTap: (){
-                          model.nagivateToProductDetails(model.products[i]);
-                        },);
+                        return ProductCard(
+                          product: model.products[i],
+                          onTap: () {
+                            model.nagivateToProductDetails(model.products[i]);
+                          },
+                        );
                       },
                     ),
                   ),
@@ -215,10 +224,12 @@ class HomeView extends StatelessWidget {
                         itemBuilder: (_, i) {
                           return CategoryCard.horizontal(
                               category: model.categories[i],
-                              onTap: (){
-                                model.navigateToProductGallery(model.categories[i]);
+                              onTap: () {
+                                model.navigateToProductGallery(
+                                    model.categories[i]);
                               },
-                              color: Colors.primaries[i % Colors.primaries.length]);
+                              color: Colors
+                                  .primaries[i % Colors.primaries.length]);
                         }),
                   ),
                   const SizedBox(height: 30),
@@ -233,9 +244,12 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: model.products.length,
                       itemBuilder: (_, i) {
-                        return ProductCard(product: model.products[i], onTap: (){
-                          model.nagivateToProductDetails(model.products[i]);
-                        },);
+                        return ProductCard(
+                          product: model.products[i],
+                          onTap: () {
+                            model.nagivateToProductDetails(model.products[i]);
+                          },
+                        );
                       },
                     ),
                   ),

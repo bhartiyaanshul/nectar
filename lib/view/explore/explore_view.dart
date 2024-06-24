@@ -38,7 +38,7 @@ class ExploreView extends StatelessWidget {
                 PrimarySearchField(
                   onChanged: (val){},
                   onTap: (){
-                    context.router.push(const SearchRoute());
+                    model.navigateToSearch();
                   },
                   hintText: 'Search Store',
                   prefixicon: SvgPicture.asset(
