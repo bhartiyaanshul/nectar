@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar/core/model/product_model.dart';
 import 'package:nectar/core/viewmodel/cart_view_model.dart';
+import 'package:nectar/view/favourite/favourite_view_model.dart';
 import 'package:nectar/view/product_details/product_details_view_model.dart';
 import 'package:nectar/widget/accordion/accordion.dart';
 import 'package:nectar/widget/button/primary_button.dart';
@@ -16,10 +17,9 @@ class ProductDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseUrl = 'https://dxbfneyqkwbswxshogoy.supabase.co/storage/v1/object/public/content/';
     final controller = PageController();
     return ChangeNotifierProvider(
-      create: (context) => ProductDetailsViewModel(),
+      create: (context) => ProductDetailsViewModel(product),
       builder: (context, _) {
         final cartModel = context.watch<CartViewModel>();
         final model = context.watch<ProductDetailsViewModel>();
@@ -122,8 +122,18 @@ class ProductDetailsView extends StatelessWidget {
                       ),
                       const Spacer(),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.favorite_border_rounded,
+                          onPressed: () async {
+                            print(model.isLiked);
+                            if(model.isLiked) {
+                              model.removeProductFromFavourite(product);
+                            } else {
+                              model.addProductToFavourite(product);
+                            }
+                            print(model.isLiked);;
+                          },
+                          icon: model.isLiked ? const Icon(Icons.favorite_rounded,
+                              color: Colors.red, size: 28) :
+                           const Icon(Icons.favorite_border_rounded,
                               color: Color(0xff7C7C7C), size: 28))
                     ],
                   ),
