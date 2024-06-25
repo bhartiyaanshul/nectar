@@ -27,4 +27,22 @@ class ProductService{
     // print(products.toString());
     return products.map((product) => ProductModel.fromMap(product)).toList();
   }
+
+  
+
+
+
+  // Future<List<>> getCartProducts() async {
+  //   print('Getting cart products... product_service.dart');
+  //   // Fetch cart products from API
+  //   final products = await supabase.from('user_cart').select('*').eq('user_id', supabase.auth.currentUser!.id);
+  //   if(products.isEmpty){
+  //     log("No products found or Unknown error");
+  //     return [];
+  //   }
+  //   log(products.toString());
+  //   return products.map((product) => ProductModel.fromMap(product)).toList();
+  // }
+
+
 }

@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar/core/viewmodel/cart_view_model.dart';
 import 'package:nectar/widget/button/primary_button.dart';
 import 'package:nectar/widget/checkout/checkout.dart';
+import 'package:nectar/widget/tile/cart_product_tile.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class CartView extends StatelessWidget {
@@ -9,66 +12,42 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<CartViewModel>();
     return Scaffold(
-      appBar: AppBar(
-        title:
-            Text('My Cart', style: Theme.of(context).textTheme.headlineMedium),
-      ),
-      body: Stack(children: [
-        ListView(
-          children: [
-            ListTile(
-              title: Text('Product 1',
-                  style: Theme.of(context).textTheme.bodyText1),
-              subtitle: Text('Price: \$100',
-                  style: Theme.of(context).textTheme.bodyText2),
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {},
-              ),
-            ),
-            ListTile(
-              title: Text('Product 2',
-                  style: Theme.of(context).textTheme.bodyText1),
-              subtitle: Text('Price: \$200',
-                  style: Theme.of(context).textTheme.bodyText2),
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {},
-              ),
-            ),
-            ListTile(
-              title: Text('Product 3',
-                  style: Theme.of(context).textTheme.bodyText1),
-              subtitle: Text('Price: \$300',
-                  style: Theme.of(context).textTheme.bodyText2),
-              trailing: IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
-        Positioned(
-          bottom: 20,
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: PrimaryButton.primary(
-                title: 'Go to Checkout ',
-                onTap: () {
-                  showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) {
-                      return const Checkout();
-                    },
-                  );
-                }),
+          appBar: AppBar(
+            title:
+                Text('My Cart', style: Theme.of(context).textTheme.headlineMedium),
           ),
-        ),
-      ]),
-    );
+          body: Stack(children: [
+            ListView.separated(
+              padding: const EdgeInsets.only(bottom: 100),
+              separatorBuilder: (context, index) => const Divider(),
+              itemBuilder: (context, index) {
+                final cartProduct = model.products[index];
+                return CartProductTile(cartProduct: cartProduct);
+              },
+              itemCount: model.products.length,
+            ),
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: PrimaryButton.primary(
+                    title: 'Go to Checkout ',
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) {
+                          return const Checkout();
+                        },
+                      );
+                    }),
+              ),
+            ),
+          ]),
+        );
+      }
   }
-}

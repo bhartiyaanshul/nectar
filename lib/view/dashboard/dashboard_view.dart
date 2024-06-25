@@ -16,7 +16,7 @@ class DashboardView extends StatelessWidget {
         HomeRoute(),
         const ExploreRoute(),
         const CartRoute(),
-        const ExploreRoute(),
+        const FavouriteRoute(),
         const AccountRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(

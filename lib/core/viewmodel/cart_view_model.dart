@@ -1,27 +1,41 @@
-import 'dart:collection';
-import 'package:flutter/material.dart';
-import 'package:nectar/core/model/item.dart';
+import 'package:nectar/core/app_locator.dart';
+import 'package:nectar/core/model/card_model.dart';
+import 'package:nectar/core/model/product_model.dart';
+import 'package:nectar/core/service/cart_service.dart';
+import 'package:nectar/core/service/product_service.dart';
+import 'package:nectar/core/viewmodel/base_view_model.dart';
+import 'dart:developer';
 
-class CartViewModel extends ChangeNotifier {
-  final List<Item> _items = [];
+class CartViewModel extends BaseViewModel {
+  final _productService = locator<ProductService>();
+  final _cartService = locator<CartService>(); 
 
-  UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
+  List<CartModel> _products = [];
+  List<CartModel> get products => _products;
+  // List<ProductModel> _products = [];
+  // List<ProductModel> get products => _products;
 
-  int get totalPrice => _items.length * 42;
+  CartViewModel() {
+    getCartProducts();
+  }
 
-  void add(Item item) {
-    _items.add(item);
+  Future<void> addProductToCart(ProductModel product, int quantity) async {
+    print('Adding product to cart...');
+    await _cartService.addProductToCart(product, quantity);
+    getCartProducts();
+  }
+
+  void getCartProducts() async {
+    print('Getting cart products...');
+    _products = await _cartService.getCartProducts();
+    // log(_products.toString());
     notifyListeners();
   }
 
-  void removeAll() {
-    _items.clear();
-    notifyListeners();
+  void removeProductFromCart(ProductModel product) {
+    print('Removing product from cart...');
+    _cartService.removeProductFromCart(product.id);
+    getCartProducts();
   }
 
-  void remove(Item item) {
-    _items.remove(item);
-    notifyListeners();
-  }
 }
-

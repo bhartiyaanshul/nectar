@@ -81,18 +81,18 @@ class ProductModel {
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      brand: BrandModel.fromMap(map['brand'] as Map<String,dynamic>),
-      brand_id: map['brand_id'] as int,
-      category: CategoryModel.fromMap(map['category'] as Map<String,dynamic>),
-      category_id: map['category_id'] as int,
-      price: map['price'] as double,
-      images: List<String>.from((map['images'])),
-      specifications: Map<String, dynamic>.from((map['specifications'] as Map<String, dynamic>)),
-      description: map['description'] as String,
+      id: map['id'] ?? 0,
+      name: map['name'] ?? '',
+      brand: BrandModel.fromMap(map['brand'] ?? {}),
+      brand_id: map['brand_id'] ?? 0,
+      category: CategoryModel.fromMap(map['category'] ?? {}),
+      category_id: map['category_id'] ?? 0,
+      price: map['price'] ?? 0.0,
+      images: List<String>.from((map['images']) ?? []),
+      specifications: Map<String, dynamic>.from((map['specifications'] ?? {})),
+      description: map['description'] ?? '',
       created_at: DateTime.parse(map['created_at']),
-      tag: map['tag'] as String,
+      tag: map['tag'] ?? '',
     );
   }
 

@@ -11,8 +11,10 @@ class AppProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CartViewModel()),
+        // ChangeNotifierProvider(create: (_) => CartViewModel()),
         ChangeNotifierProvider(create:  (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => CartViewModel()),
+      
       ],
       child: child,
     );
