@@ -8,9 +8,17 @@ class SearchViewModel extends BaseViewModel {
   List<ProductModel> _searchList = [];
   List<ProductModel> get searchList => _searchList;
 
+  SearchViewModel(){
+    getProducts();
+  }
 
   void getSearchData(String search) async {
     _searchList = await _productService.getProductsBySearch(search);
+    notifyListeners();
+  }
+
+  void getProducts() async {
+    _searchList = await _productService.getProducts();
     notifyListeners();
   }
 }

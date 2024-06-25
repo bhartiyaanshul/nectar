@@ -24,7 +24,10 @@ class CartView extends StatelessWidget {
               separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 final cartProduct = model.products[index];
-                return CartProductTile(cartProduct: cartProduct);
+                return CartProductTile(cartProduct: cartProduct,
+                removeProductFromCart: (){
+                  model.removeProductFromCart(cartProduct.product);
+                });
               },
               itemCount: model.products.length,
             ),

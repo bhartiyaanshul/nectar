@@ -3,17 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:nectar/view/favourite/favourite_view_model.dart';
 import 'package:nectar/widget/button/primary_button.dart';
 import 'package:nectar/widget/checkout/checkout.dart';
+import 'package:nectar/widget/tile/favourite_product_tile.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
-class FavouriteView extends StatelessWidget {
+class FavouriteView extends StatefulWidget {
   const FavouriteView({super.key});
 
   @override
+  State<FavouriteView> createState() => _FavouriteViewState();
+}
+
+class _FavouriteViewState extends State<FavouriteView> {
+
+  @override
+  void initState() {
+    context.read<FavouriteViewModel>().getFavouriteProducts();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FavouriteViewModel(),
-      builder: (context,_) {
         final model = context.watch<FavouriteViewModel>();
         return Scaffold(
           appBar: AppBar(
@@ -24,10 +33,10 @@ class FavouriteView extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 100),
                   separatorBuilder: (context, index) => const Divider(),
                   itemBuilder: (context, index) {
-                    // final cartProduct = model.products[index];
-                    // return CartProductTile(cartProduct: cartProduct);
+                    final favProducts = model.favouriteProduct[index];
+                    return FavouriteProductTile(product: favProducts);
                   },
-                  itemCount: 1,
+                  itemCount: model.favouriteProduct.length,
                 ),
                 Positioned(
                   bottom: 20,
@@ -51,6 +60,4 @@ class FavouriteView extends StatelessWidget {
               ]),
         );
       }
-    );
   }
-}

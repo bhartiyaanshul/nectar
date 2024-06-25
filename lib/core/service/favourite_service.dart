@@ -32,22 +32,12 @@ class FavouriteService {
     
   }
 
-  
-
-  // Future<bool> isLiked(int productId) async {
-  //   final res = await supabase.from('user_favorite').select().eq('product_id', productId).eq('user_id', supabase.auth.currentUser!.id);
-  //   if (res.isEmpty) {
-  //     throw Exception('Failed to check if product is liked');
-  //   }
-    
-  //   // return res.data.isNotEmpty;
-  // }
-  // Future<List<ProductModel>> getFavouriteProducts() async {
-  //   final res = await supabase.from('user_favorite').select().eq('user_id', supabase.auth.currentUser!.id);
-  //   if (res.error != null) {
-  //     throw Exception('Failed to get favourite products');
-  //   }
-  //   final products = res.data.map((e) => ProductModel.fromJson(e)).toList();
-  //   return products;
-  // }
+  Future<List<ProductModel>> getFavouriteProducts() async {
+    print('Getting favourite products...');
+    final res = await supabase.from('user_favorite').select('*, product(*, brand(*), category(*))').eq('user_id', supabase.auth.currentUser!.id);
+    if (res.isEmpty) {
+      throw Exception('Failed to get favourite products');
+    }
+    return res.map((e) => ProductModel.fromMap(e['product'])).toList();
+  }
 }

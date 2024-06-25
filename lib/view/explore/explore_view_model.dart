@@ -22,6 +22,8 @@ class ExploreViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  
+
   void navigateToProductGallery(CategoryModel category) {
     _appRouter.push(ProductGalleryRoute(category: category));
     print('Navigating to product gallery...');

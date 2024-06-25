@@ -110,7 +110,9 @@ class HomeView extends StatelessWidget {
                                     fontFamily: 'gilroy',
                                     fontSize: 16,
                                     color: Color(0xff53B175))),
-                            onPressed: () {},
+                            onPressed: () {
+                              model.navigateToSearch();
+                            },
                           ),
                         )
                       ],
@@ -155,7 +157,9 @@ class HomeView extends StatelessWidget {
                                     fontFamily: 'gilroy',
                                     fontSize: 16,
                                     color: Color(0xff53B175))),
-                            onPressed: () {},
+                            onPressed: () {
+                              model.navigateToSearch();
+                            },
                           ),
                         )
                       ],
@@ -201,7 +205,7 @@ class HomeView extends StatelessWidget {
                                     fontSize: 16,
                                     color: Color(0xff53B175))),
                             onPressed: () {
-                              context.router.push(const ExploreRoute());
+                              model.navigateToSearch();
                             },
                           ),
                         )
